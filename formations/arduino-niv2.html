@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino - Niveau II | Maker Hub</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Structure pour coller le footer en bas */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .article-container { 
+            flex: 1; 
+            max-width: 800px; 
+            margin: 100px auto 40px; 
+            padding: 0 20px; 
+        }
+
+        /* Nettoyage des animations de la page d'accueil */
+        section { 
+            padding: 40px 0 !important; 
+            opacity: 1 !important; 
+            transform: none !important; 
+        }
+
+        .article-meta { 
+            color: var(--secondary); 
+            margin-bottom: 1.5rem; 
+            display: flex; 
+            gap: 20px; 
+            font-size: 0.9rem; 
+            align-items: center;
+        }
+
+        .meta-item { display: flex; align-items: center; gap: 6px; }
+
+        .article-content { line-height: 1.8; font-size: 1.1rem; }
+        .article-content h2 { margin-top: 2rem; border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 5px; }
+        .article-content img { width: 100%; border-radius: 12px; margin: 20px 0; }
+        
+        .code-block { 
+            background: #1e1e1e; 
+            color: #d4d4d4; 
+            padding: 20px; 
+            border-radius: 8px; 
+            font-family: 'Courier New', monospace; 
+            overflow-x: auto; 
+            margin: 20px 0; 
+            border: 1px solid #333; 
+        }
+
+        .back-link { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: var(--accent); margin-bottom: 20px; font-weight: bold; }
+        .back-link:hover { color: var(--primary); }
+
+        header { padding-top: 20px; }
+    </style>
+</head>
+<body data-theme="light"> 
+
+    <nav>
+        <a href="../index.html" class="logo-container">
+            <img src="../images/logo.png" alt="Logo" class="logo-img">
+            <span class="logo-text">MAKER HUB</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html#presentation">Concept</a></li>
+            <li><a href="../index.html#articles">Blog</a></li>
+            <li><a href="../index.html#apprentissage">Formation</a></li>
+            <li><a href="../index.html#staff">Staff</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeBtn"><i data-lucide="sun"></i></button>
+    </nav>
+
+    <main class="article-container">
+        <a href="../index.html#apprentissage" class="back-link">
+            <i data-lucide="arrow-left"></i> Retour aux formations
+        </a>
+
+        <article>
+            <header>
+                <small style="color: var(--accent); font-weight: bold; text-transform: uppercase;">Formation</small>
+                <h1 style="font-size: 2.5rem; margin: 10px 0;">Arduino - Niveau II</h1>
+                
+                <div class="article-meta">
+                    <span class="meta-item">
+                        <i data-lucide="calendar" size="18"></i> 18 Avril 2026
+                    </span>
+                    <span class="meta-item">
+                        <i data-lucide="user" size="18"></i> Par antoine8205
+                    </span>
+                    <span class="meta-item">
+                        <i data-lucide="clock" size="18"></i> Durée : 10h
+                    </span>
+                </div>
+            </header>
+
+            <div class="article-content">
+                <p>Cette formation approfondit vos connaissances de l'écosystème Arduino en explorant des composants plus complexes et des méthodes de développement professionnelles.</p>
+                
+                <h2>Informations</h2>
+                <ul>
+                    <li>Cours sur les notions avancées de l'Arduino</li>
+                    <li>Support de cours disponible sur le Drive</li>
+                    <li>Nécessite les bases abordées au cours de niveau I</li>
+                </ul>
+
+                <h2>Sujets abordés</h2>
+                <ul>
+                    <li>Cartes Arduino Mega et Nano</li>
+                    <li>PlatformIO (Environnement de développement professionnel)</li>
+                    <li>Mémoire EEPROM</li>
+                    <li>Transistors MOSFET</li>
+                    <li>RTC (Horloge temps réel)</li>
+                    <li>Potentiomètre Digital</li>
+                    <li>Relais</li>
+                    <li>ATtiny85 (Miniaturisation)</li>
+                    <li>Écrans LCD</li>
+                    <li>DAC Externe</li>
+                </ul>
+
+                <h2>Le Matériel Utilisé</h2>
+                <ul>
+                    <li>Cartes Arduino (Uno, Mega ou Nano)</li>
+                    <li>Composants de base (LEDs, résistances, potentiomètre, boutons)</li>
+                    <li>Platine de prototypage (Breadboard)</li>
+                    <li>EEPROM 24LC16</li>
+                    <li>RTC DS1307</li>
+                    <li>Relais 5V</li>
+                    <li>MOSFET IRF7413</li>
+                    <li>Transistors NPN</li>
+                    <li>Ordinateur</li>
+                </ul>
+
+                <h2>Finalité</h2>
+                <p>À l'issue de cette formation, vous serez capable d'utiliser des composants avancés pour compléter vos circuits Arduino et concevoir des systèmes plus robustes et autonomes.</p>
+
+                <h2>Lien du cours</h2>
+                <p><em>Sera disponible prochainement.</em></p>
+            </div>
+        </article>
+
+        <section style="margin-top: 80px; border-top: 1px solid var(--secondary); padding-top: 40px;">
+            <h3 style="margin-bottom: 25px;">D'autres formations qui pourraient vous plaire</h3>
+            <div class="grid">
+                
+                <div class="card clickable-card" style="position: relative; padding: 20px;">
+                    <a href="arduino-niv1.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
+                    <small>Formation</small>
+                    <h3 style="margin: 10px 0;">Arduino - Niveau I</h3>
+                    <p style="font-size: 0.95rem;">Découvrez les bases fondamentales de l'Arduino.</p>
+                </div>
+
+                <div class="card clickable-card" style="position: relative; padding: 20px;">
+                    <a href="arduino-niv3.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
+                    <small>Formation</small>
+                    <h3 style="margin: 10px 0;">Arduino - Niveau III</h3>
+                    <p style="font-size: 0.95rem;">Explorez le monde du 32 bits et de l'IoT.</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Maker Hub &copy; 2026 - Propulsé par la curiosité.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        const themeBtn = document.getElementById('themeBtn');
+        themeBtn.addEventListener('click', () => {
+            const body = document.body;
+            const isLight = body.getAttribute('data-theme') === 'light';
+            body.setAttribute('data-theme', isLight ? 'dark' : 'light');
+            themeBtn.innerHTML = isLight ? '<i data-lucide="moon"></i>' : '<i data-lucide="sun"></i>';
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

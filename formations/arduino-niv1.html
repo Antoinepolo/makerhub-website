@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Station météo LoRa | Maker Hub</title>
+    <title>Arduino - Niveau I | Maker Hub</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="../style.css">
     <style>
-        /* Structure Flexbox pour coller le footer en bas */
+        /* Structure pour coller le footer en bas */
         body {
             display: flex;
             flex-direction: column;
@@ -17,22 +17,22 @@
         .article-container { 
             flex: 1; 
             max-width: 800px; 
-            margin: 100px auto 40px; /* 100px en haut pour laisser la nav respirer */
+            margin: 100px auto 40px; 
             padding: 0 20px; 
         }
 
-        /* Nettoyage des styles hérités de style.css */
+        /* Nettoyage des animations de la page d'accueil */
         section { 
-            padding: 40px 0 !important; /* Réduit l'espace vide autour des suggestions */
+            padding: 40px 0 !important; 
             opacity: 1 !important; 
             transform: none !important; 
         }
 
         .article-meta { 
             color: var(--secondary); 
-            margin-bottom: 1rem; 
+            margin-bottom: 1.5rem; 
             display: flex; 
-            gap: 15px; 
+            gap: 20px; 
             font-size: 0.9rem; 
             align-items: center;
         }
@@ -55,6 +55,7 @@
         }
 
         .back-link { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: var(--accent); margin-bottom: 20px; font-weight: bold; }
+        .back-link:hover { color: var(--primary); }
 
         header { padding-top: 20px; }
     </style>
@@ -69,80 +70,88 @@
         <ul class="nav-links">
             <li><a href="../index.html#presentation">Concept</a></li>
             <li><a href="../index.html#articles">Blog</a></li>
-            <li><a href="../index.html#apprentissage">Blog</a></li>
+            <li><a href="../index.html#apprentissage">Formation</a></li>
             <li><a href="../index.html#staff">Staff</a></li>
         </ul>
         <button class="theme-toggle" id="themeBtn"><i data-lucide="sun"></i></button>
     </nav>
 
     <main class="article-container">
-        <a href="../index.html#articleEtProjet" class="back-link">
-            <i data-lucide="arrow-left"></i> Retour aux projets
+        <a href="../index.html#apprentissage" class="back-link">
+            <i data-lucide="arrow-left"></i> Retour aux formations
         </a>
 
         <article>
             <header>
-                <small style="color: var(--accent); font-weight: bold; text-transform: uppercase;">Projet en cours</small>
-                <h1 style="font-size: 2.5rem; margin: 10px 0;">Station météo LoRa autonome</h1>
+                <small style="color: var(--accent); font-weight: bold; text-transform: uppercase;">Formation</small>
+                <h1 style="font-size: 2.5rem; margin: 10px 0;">Arduino - Niveau I</h1>
                 
                 <div class="article-meta">
                     <span class="meta-item">
-                        <i data-lucide="calendar" size="18"></i> 
-                        18 Avril 2026
+                        <i data-lucide="calendar" size="18"></i> 18 Avril 2026
                     </span>
                     <span class="meta-item">
-                        <i data-lucide="user" size="18"></i> 
-                        Par antoine8205
+                        <i data-lucide="user" size="18"></i> Par mixmix92
                     </span>
                     <span class="meta-item">
-                        <i data-lucide="clock" size="18"></i> 
-                        8 min de lecture
+                        <i data-lucide="clock" size="18"></i> 20h
                     </span>
                 </div>
             </header>
 
             <div class="article-content">
-                <p>Le projet consiste à déployer une sonde météo capable de transmettre des données (température, humidité, pression) sur une distance de 10km sans utiliser de Wi-Fi ou de 4G, grâce à la technologie <strong>LoRaWAN</strong>.</p>
+                <p>Cette formation est une introduction à l'univers Arduino grâce à la carte programmable <strong>Arduino Uno</strong>.</p>
                 
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000" alt="Electronique">
+                <h2>Informations</h2>
+                <ul>
+                    <li>Cours d'introduction à l'Arduino</li>
+                    <li>Support de cours disponible sur le Drive</li>
+                    <li>Accessible aux débutants</li>
+                </ul>
+
+                <h2>Sujets abordés</h2>
+                <ul>
+                    <li>Carte Arduino Uno</li>
+                    <li>Arduino IDE</li>
+                    <li>Entrées et sorties numériques et analogiques</li>
+                    <li>UART (Communication série)</li>
+                    <li>Gestion de la temporisation</li>
+                </ul>
 
                 <h2>Le Matériel Utilisé</h2>
                 <ul>
-                    <li>Micro-contrôleur ESP32 Heltec LoRa V2</li>
-                    <li>Capteur BME280 (Bosch)</li>
-                    <li>Panneau solaire 5V avec gestionnaire de charge TP4056</li>
-                    <li>Batterie Li-Po 18650</li>
+                    <li>Carte Arduino Uno</li>
+                    <li>Composants de base (LEDs, résistances, potentiomètre, bouton, photorésistance)</li>
+                    <li>Platine de prototypage (Breadboard)</li>
+                    <li>Ordinateur</li>
                 </ul>
 
-                <h2>Extrait du Code (Arduino)</h2>
-                <div class="code-block">
-                    #include &lt;LoRa.h&gt;<br>
-                    void setup() {<br>
-                    &nbsp;&nbsp;Serial.begin(115200);<br>
-                    &nbsp;&nbsp;if (!LoRa.begin(868E6)) {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;Serial.println("Erreur LoRa");<br>
-                    &nbsp;&nbsp;}<br>
-                    }
-                </div>
+                <h2>Finalité</h2>
+                <p>À l'issue de cette formation, vous aurez appris les bases de l'Arduino. Vous serez capable de comprendre et d'écrire des programmes simples de manière autonome.</p>
 
-                <h2>Déploiement sur le terrain</h2>
-                <p>L'installation a été faite sur un mât à 15 mètres d'altitude pour maximiser la portée du signal. Les premiers tests montrent une réception stable à 8,5km en zone péri-urbaine.</p>
+                <h2>Lien du cours</h2>
+                <p><em>Sera disponible prochainement.</em></p>
             </div>
         </article>
 
         <section style="margin-top: 80px; border-top: 1px solid var(--secondary); padding-top: 40px;">
-            <h3 style="margin-bottom: 20px;">D'autres articles qui pourraient vous plaire</h3>
+            <h3 style="margin-bottom: 25px;">D'autres formations qui pourraient vous plaire</h3>
             <div class="grid">
-                <div class="card">
-                    <small>TUTO</small>
-                    <h3>Optimiser ses impressions 3D</h3>
-                    <p>Réglages fins pour des pièces mécaniques résistantes.</p>
+                
+                <div class="card clickable-card" style="position: relative; padding: 20px;">
+                    <a href="arduino-niv2.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
+                    <small>Formation</small>
+                    <h3 style="margin: 10px 0;">Arduino - Niveau II</h3>
+                    <p style="font-size: 0.95rem;">Découvrez d'autres cartes et divers composants avancés.</p>
                 </div>
-                <div class="card">
-                    <small>TUTO</small>
-                    <h3>Réaliser des PCB</h3>
-                    <p>Découvrez comment réaliser des PCB professionnels.</p>
+
+                <div class="card clickable-card" style="position: relative; padding: 20px;">
+                    <a href="arduino-niv3.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
+                    <small>Formation</small>
+                    <h3 style="margin: 10px 0;">Arduino - Niveau III</h3>
+                    <p style="font-size: 0.95rem;">Explorez le monde du 32 bits et de l'IoT.</p>
                 </div>
+
             </div>
         </section>
     </main>
@@ -152,17 +161,12 @@
     </footer>
 
     <script>
-        // Initialisation des icônes Lucide
         lucide.createIcons();
-
-        // Gestion du Thème (Dark/Light)
         const themeBtn = document.getElementById('themeBtn');
         themeBtn.addEventListener('click', () => {
             const body = document.body;
             const isLight = body.getAttribute('data-theme') === 'light';
             body.setAttribute('data-theme', isLight ? 'dark' : 'light');
-            
-            // Mise à jour de l'icône
             themeBtn.innerHTML = isLight ? '<i data-lucide="moon"></i>' : '<i data-lucide="sun"></i>';
             lucide.createIcons();
         });
