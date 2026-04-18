@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maker Hub | Communauté Tech</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark"> 
+
+    <!-- NAVIGATION -->
+
+    <nav>
+        <a href="#" class="logo-container">
+            <img src="images/logo.png" alt="Logo" class="logo-img">
+            <span class="logo-text">MAKER HUB</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#presentation">Concept</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#formation">Formation</a></li>
+            <li><a href="#staff">Staff</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeBtn"><i data-lucide="sun"></i></button>
+    </nav>
+
+    <header class="hero">
+        <h1><span id="typewriter"></span><span class="cursor">|</span></h1>
+        <p>L'espace communautaire dédié à l'électronique, au code et à la fabrication numérique.</p>
+        <a href="https://discord.gg/tonlien" class="btn-discord">Rejoindre le Hub</a>
+    </header>
+
+    <!-- SECTION : Présentation -->
+
+    <section id="presentation">
+        <h2>Le Projet</h2>
+        <div class="grid">
+            <div class="card">
+                <i data-lucide="cpu" style="margin-bottom:1rem"></i>
+                <h3>Électronique</h3>
+                <p>De la conception de circuits à la programmation de micro-contrôleurs.</p>
+            </div>
+            <div class="card">
+                <i data-lucide="settings" style="margin-bottom:1rem"></i>
+                <h3>Ingénierie</h3>
+                <p>Partage de connaissances théoriques et pratiques en mécanique et système.</p>
+            </div>
+            <div class="card">
+                <i data-lucide="wrench" style="margin-bottom:1rem"></i>
+                <h3>Maker Culture</h3>
+                <p>Impression 3D, CNC, bois et métal. L'art de fabriquer soi-même.</p>
+            </div>
+        </div>
+        <div class="grid" style="margin-top: 25px;">
+            <div class="card">
+                <i data-lucide="shield-check" style="margin-bottom:1rem"></i>
+                <h3>Cybersécurité</h3>
+                <p>CTF, sécurisation de système.</p>
+            </div>
+            <div class="card">
+                <i data-lucide="terminal" style="margin-bottom:1rem"></i>
+                <h3>Informatique</h3>
+                <p>Système d'exploitation, programmation, réseau.</p>
+            </div>
+            <div class="card">
+                <i data-lucide="users" style="margin-bottom:1rem"></i>
+                <h3>Rencontre</h3>
+                <p>Étudiant, passionné, professionnel et bien plus.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION : Blog -->
+
+    <section id="blog">
+        <h2>Articles & Projets</h2>
+        <div class="grid">
+            <div class="card">
+                <small>PROJET EN COURS</small>
+                <h3>Station météo LoRa</h3>
+                <p>Comment nous avons déployé une sonde autonome sur 10km.</p>
+            </div>
+            <div class="card">
+                <small>TUTO</small>
+                <h3>Optimiser ses impressions 3D</h3>
+                <p>Réglages fins pour des pièces mécaniques résistantes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION : Formation -->
+
+    <section id="formation">
+        <h2>Apprentissage</h2>
+        <div class="stack"> 
+            <div class="card">
+                <div class="card-header">
+                    <h3>Workshop hebdomadaire</h3>
+                    <span class="badge">LIVE BIENTÔT</span>
+                </div>
+                <p>Chaque mercredi soir, un membre présente une technologie ou un projet spécifique en vocal.</p>
+            </div>
+
+            <div class="card">
+                <h3>Initiation à la soudure SMD</h3>
+                <p>Apprenez à souder des composants minuscules sans trembler.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION : Staff -->
+
+    <section id="staff">
+        <h2>L'Équipe</h2>
+        <div class="grid">
+            <div class="card staff-card">
+                <div class="staff-avatar">👨‍💻</div>
+                <h4>antoine8205</h4>
+                <p>Coucou</p>
+            </div>
+            <div class="card staff-card">
+                <div class="staff-avatar">🛠️</div>
+                <h4>mixmix92</h4>
+                <p>Salut</p>
+            </div>
+            <div class="card staff-card">
+                <div class="staff-avatar">⚙️</div>
+                <h4>yesandno</h4>
+                <p>Holà</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Maker Hub &copy; 2026 - Propulsé par la curiosité.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
