@@ -109,6 +109,18 @@ section h2 { margin-bottom: 2.5rem; font-size: 2rem; font-weight: 700; }
 .card:hover { border-color: var(--primary); transform: translateY(-5px); }
 .card h3 { margin-bottom: 1rem; color: var(--accent); }
 
+/* --- Styles pour cartes cliquables --- */
+.clickable-card { padding: 0; overflow: hidden; } /* On retire le padding de la div pour que le lien prenne tout l'espace */
+.clickable-card a { 
+    display: block; 
+    padding: 2.5rem; 
+    text-decoration: none; 
+    color: inherit; 
+    height: 100%; 
+    width: 100%; 
+}
+/* ------------------------------------- */
+
 .card-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
 .badge { background: var(--secondary); color: var(--bg); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
 

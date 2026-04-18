@@ -18,8 +18,8 @@
         </a>
         <ul class="nav-links">
             <li><a href="#presentation">Concept</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#formation">Formation</a></li>
+            <li><a href="#articles">Blog</a></li>
+            <li><a href="#apprentissage">Formation</a></li>
             <li><a href="#staff">Staff</a></li>
         </ul>
         <button class="theme-toggle" id="themeBtn"><i data-lucide="sun"></i></button>
@@ -71,27 +71,60 @@
         </div>
     </section>
 
-    <!-- SECTION : Blog -->
+    <!-- SECTION : Article & Projet -->
 
-    <section id="blog">
+    <section id="articles">
         <h2>Articles & Projets</h2>
+        
         <div class="grid">
-            <div class="card">
-                <small>PROJET EN COURS</small>
-                <h3>Station météo LoRa</h3>
-                <p>Comment nous avons déployé une sonde autonome sur 10km.</p>
+            <div class="card clickable-card">
+                <a href="articles/template.html">
+                    <small>PROJET EN COURS</small>
+                    <h3>Station météo LoRa</h3>
+                    <p>Comment nous avons déployé une sonde autonome sur 10km.</p>
+                </a>
             </div>
-            <div class="card">
-                <small>TUTO</small>
-                <h3>Optimiser ses impressions 3D</h3>
-                <p>Réglages fins pour des pièces mécaniques résistantes.</p>
+            <div class="card clickable-card">
+                <a href="articles/impression3d.html">
+                    <small>TUTO</small>
+                    <h3>Optimiser ses impressions 3D</h3>
+                    <p>Réglages fins pour des pièces mécaniques résistantes.</p>
+                </a>
             </div>
+        </div>
+
+        <div class="grid" style="margin-top: 20px;">
+            <div class="card clickable-card">
+                <a href="articles/cms.html">
+                    <small>TUTO</small>
+                    <h3>Souder des composants CMS</h3>
+                    <p>Découvrez le monde de la soudure CMS.</p>
+                </a>
+            </div>
+            <div class="card clickable-card">
+                <a href="articles/pcb.html">
+                    <small>TUTO</small>
+                    <h3>Réaliser des PCB</h3>
+                    <p>Découvrez comment réaliser des PCB professionnels.</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="grid" style="margin-top: 20px;">
+            <div class="card clickable-card">
+                <a href="articles/template.html">
+                    <small>NOUVEAU</small>
+                    <h3>Titre Case 3</h3>
+                    <p>Description...</p>
+                </a>
+            </div>
+            <div style="visibility: hidden;"></div>
         </div>
     </section>
 
-    <!-- SECTION : Formation -->
+    <!-- SECTION : Apprentissage -->
 
-    <section id="formation">
+    <section id="apprentissage">
         <h2>Apprentissage</h2>
         <div class="stack"> 
             <div class="card">
@@ -103,8 +136,13 @@
             </div>
 
             <div class="card">
-                <h3>Initiation à la soudure SMD</h3>
-                <p>Apprenez à souder des composants minuscules sans trembler.</p>
+                <h3>Arduino - Niveau I</h3>
+                <p>Apprenez les bases de l'Arduino.</p>
+            </div>
+
+             <div class="card">
+                <h3>Arduino - Niveau II</h3>
+                <p>Devenez un vrai professionnel de l'Arduino.</p>
             </div>
         </div>
     </section>
