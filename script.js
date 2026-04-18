@@ -6,13 +6,28 @@ lucide.createIcons();
 const themeBtn = document.getElementById('themeBtn');
 const body = document.body;
 
+// --- LE TRUC EN PLUS : Charger le thème sauvegardé dès l'ouverture de l'index ---
+const savedTheme = localStorage.getItem('theme') || 'light';
+body.setAttribute('data-theme', savedTheme);
+updateIcon(savedTheme);
+
 themeBtn.addEventListener('click', () => {
     const currentTheme = body.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
     body.setAttribute('data-theme', newTheme);
-    themeBtn.innerHTML = newTheme === 'dark' ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
-    lucide.createIcons();
+    
+    // --- LE TRUC EN PLUS : Sauvegarder le choix ---
+    localStorage.setItem('theme', newTheme);
+    
+    updateIcon(newTheme);
 });
+
+// Fonction pour mettre à jour l'icône proprement
+function updateIcon(theme) {
+    themeBtn.innerHTML = theme === 'dark' ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
+    lucide.createIcons();
+}
 
 /* ==========================================
    ANIMATION AU SCROLL (Intersection Observer)
@@ -56,7 +71,7 @@ function type() {
 
     if (!isDeleting && charIndex === currentPhrase.length) {
         isDeleting = true;
-        typeSpeed = 2000; // Temps d'arrêt quand la phrase est complète
+        typeSpeed = 2000; 
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         phraseIndex = (phraseIndex + 1) % phrases.length;

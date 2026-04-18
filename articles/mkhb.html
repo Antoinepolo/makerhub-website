@@ -102,25 +102,31 @@
             </header>
 
             <div class="article-content" style="max-width: 900px; margin: 20px auto; font-family: sans-serif; line-height: 1.6; color: #333;">
-    
-    <p style="padding: 15px; border-left: 6px solid #4facfe; background: #f0f7ff; border-radius: 4px;">
-        <strong style="color: #007bff;">Maker Hub</strong> est un projet <strong>créé et géré</strong> par des étudiants, permettant de discuter, s'informer et apprendre dans divers domaines liés aux nouvelles technologies. Peu importe votre niveau, vous êtes les bienvenus et vous trouverez toujours quelque chose à faire ou des gens avec qui discuter !
-    </p>
 
-    <h2 style="margin-top: 30px; border-bottom: 2px solid #eee; padding-bottom: 5px;">Qui sommes-nous ?</h2>
+    <h2 style="margin-top: 30px; border-bottom: 2px solid var(--secondary); padding-bottom: 5px; color: var(--text);">Le projet</h2>
 
-    <div style="margin: 20px 0; padding: 20px; border: 1px solid #e1e4e8; border-left: 5px solid #0052D4; border-radius: 8px; background: #fafafa;">
-        <span style="font-weight: bold; font-size: 1.2em; color: #0052D4; text-transform: uppercase;">Antoine</span>
-        <p style="margin-top: 10px; font-style: italic; color: #444;">
-            "Passionné d'électronique et d'informatique, j'ai créé cet espace pour partager et discuter autour de ces sujets. Du homelab à la cybersécurité que j'étudie actuellement à Namur, je cultive une curiosité pour les nouvelles technologies."
+    <div class="article-content" style="max-width: 900px; margin: 20px auto; font-family: sans-serif; line-height: 1.6;">
+        
+        <p style="padding: 15px; border-left: 6px solid #4facfe; background: rgba(79, 172, 254, 0.1); border-radius: 4px; color: var(--text);">
+            <strong style="color: #007bff;">Maker Hub</strong> est un projet <strong>créé et géré</strong> par des étudiants, permettant de discuter, s'informer et apprendre dans divers domaines liés aux nouvelles technologies. Peu importe votre niveau, vous êtes les bienvenus et vous trouverez toujours quelque chose à faire ou des gens avec qui discuter !
         </p>
-    </div>
 
-    <div style="margin: 20px 0; padding: 20px; border: 1px solid #e1e4e8; border-left: 5px solid #f7971e; border-radius: 8px; background: #fafafa;">
-        <span style="font-weight: bold; font-size: 1.2em; color: #f7971e; text-transform: uppercase;">mixmix92</span>
-        <p style="margin-top: 10px; font-style: italic; color: #444;">
-            "Étudiant en génie industriel, je suis passionné par l'impression 3D, la modélisation et la réalisation de projets en général. La concrétisation de ces derniers me permet d'acquérir un large panel de compétences, avec pour objectif de ne devenir expert en rien, mais d'être bon en tout."
-        </p>
+        <h2 style="margin-top: 30px; border-bottom: 2px solid var(--secondary); padding-bottom: 5px; color: var(--text);">Qui sommes-nous ?</h2>
+
+        <div style="margin: 20px 0; padding: 20px; border: 1px solid var(--secondary); border-left: 5px solid #0052D4; border-radius: 8px; background: var(--card-bg);">
+            <span style="font-weight: bold; font-size: 1.2em; color: #0052D4; text-transform: uppercase;">Antoine</span>
+            <p style="margin-top: 10px; font-style: italic; color: var(--text); opacity: 0.9;">
+                "Passionné d'électronique et d'informatique, j'ai créé cet espace pour partager et discuter autour de ces sujets. Du homelab à la cybersécurité que j'étudie actuellement à Namur, je cultive une curiosité pour les nouvelles technologies."
+            </p>
+        </div>
+
+        <div style="margin: 20px 0; padding: 20px; border: 1px solid var(--secondary); border-left: 5px solid #f7971e; border-radius: 8px; background: var(--card-bg);">
+            <span style="font-weight: bold; font-size: 1.2em; color: #f7971e; text-transform: uppercase;">mixmix92</span>
+            <p style="margin-top: 10px; font-style: italic; color: var(--text); opacity: 0.9;">
+                "Étudiant en génie industriel, je suis passionné par l'impression 3D, la modélisation et la réalisation de projets en général. La concrétisation de ces derniers me permet d'acquérir un large panel de compétences, avec pour objectif de ne devenir expert en rien, mais d'être bon en tout."
+            </p>
+        </div>
+
     </div>
 
 </div>
@@ -148,20 +154,38 @@
     </footer>
 
     <script>
-        // Initialisation des icônes Lucide
+        // 1. Initialisation des icônes Lucide
         lucide.createIcons();
 
-        // Gestion du Thème (Dark/Light)
         const themeBtn = document.getElementById('themeBtn');
+        const body = document.body;
+
+        // 2. RÉCUPÉRATION : Dès que la page charge, on regarde si on a une préférence enregistrée
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.setAttribute('data-theme', savedTheme);
+            updateIcon(savedTheme);
+        }
+
+        // 3. ACTION : Gestion du clic sur le bouton
         themeBtn.addEventListener('click', () => {
-            const body = document.body;
-            const isLight = body.getAttribute('data-theme') === 'light';
-            body.setAttribute('data-theme', isLight ? 'dark' : 'light');
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             
-            // Mise à jour de l'icône
-            themeBtn.innerHTML = isLight ? '<i data-lucide="moon"></i>' : '<i data-lucide="sun"></i>';
-            lucide.createIcons();
+            // On applique le nouveau thème
+            body.setAttribute('data-theme', newTheme);
+            
+            // SAUVEGARDE : On enregistre le choix pour les autres pages
+            localStorage.setItem('theme', newTheme);
+            
+            updateIcon(newTheme);
         });
+
+        // Fonction pour mettre à jour l'icône sans recharger la page
+        function updateIcon(theme) {
+            themeBtn.innerHTML = theme === 'light' ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
+            lucide.createIcons();
+        }
     </script>
 </body>
 </html>
