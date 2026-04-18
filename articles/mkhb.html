@@ -82,8 +82,8 @@
 
         <article>
             <header>
-                <small style="color: var(--accent); font-weight: bold; text-transform: uppercase;">Projet en cours</small>
-                <h1 style="font-size: 2.5rem; margin: 10px 0;">Station météo LoRa autonome</h1>
+                <small style="color: var(--accent); font-weight: bold; text-transform: uppercase;">Informations</small>
+                <h1 style="font-size: 2.5rem; margin: 10px 0;">Qui sommes nous</h1>
                 
                 <div class="article-meta">
                     <span class="meta-item">
@@ -96,38 +96,34 @@
                     </span>
                     <span class="meta-item">
                         <i data-lucide="clock" size="18"></i> 
-                        8 min de lecture
+                        5 min de lecture
                     </span>
                 </div>
             </header>
 
-            <div class="article-content">
-                <p>Le projet consiste à déployer une sonde météo capable de transmettre des données (température, humidité, pression) sur une distance de 10km sans utiliser de Wi-Fi ou de 4G, grâce à la technologie <strong>LoRaWAN</strong>.</p>
-                
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000" alt="Electronique">
+            <div class="article-content" style="max-width: 900px; margin: 20px auto; font-family: sans-serif; line-height: 1.6; color: #333;">
+    
+    <p style="padding: 15px; border-left: 6px solid #4facfe; background: #f0f7ff; border-radius: 4px;">
+        <strong style="color: #007bff;">Maker Hub</strong> est un projet <strong>créé et géré</strong> par des étudiants, permettant de discuter, s'informer et apprendre dans divers domaines liés aux nouvelles technologies. Peu importe votre niveau, vous êtes les bienvenus et vous trouverez toujours quelque chose à faire ou des gens avec qui discuter !
+    </p>
 
-                <h2>Le Matériel Utilisé</h2>
-                <ul>
-                    <li>Micro-contrôleur ESP32 Heltec LoRa V2</li>
-                    <li>Capteur BME280 (Bosch)</li>
-                    <li>Panneau solaire 5V avec gestionnaire de charge TP4056</li>
-                    <li>Batterie Li-Po 18650</li>
-                </ul>
+    <h2 style="margin-top: 30px; border-bottom: 2px solid #eee; padding-bottom: 5px;">Qui sommes-nous ?</h2>
 
-                <h2>Extrait du Code (Arduino)</h2>
-                <div class="code-block">
-                    #include &lt;LoRa.h&gt;<br>
-                    void setup() {<br>
-                    &nbsp;&nbsp;Serial.begin(115200);<br>
-                    &nbsp;&nbsp;if (!LoRa.begin(868E6)) {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;Serial.println("Erreur LoRa");<br>
-                    &nbsp;&nbsp;}<br>
-                    }
-                </div>
+    <div style="margin: 20px 0; padding: 20px; border: 1px solid #e1e4e8; border-left: 5px solid #0052D4; border-radius: 8px; background: #fafafa;">
+        <span style="font-weight: bold; font-size: 1.2em; color: #0052D4; text-transform: uppercase;">Antoine</span>
+        <p style="margin-top: 10px; font-style: italic; color: #444;">
+            "Passionné d'électronique et d'informatique, j'ai créé cet espace pour partager et discuter autour de ces sujets. Du homelab à la cybersécurité que j'étudie actuellement à Namur, je cultive une curiosité pour les nouvelles technologies."
+        </p>
+    </div>
 
-                <h2>Déploiement sur le terrain</h2>
-                <p>L'installation a été faite sur un mât à 15 mètres d'altitude pour maximiser la portée du signal. Les premiers tests montrent une réception stable à 8,5km en zone péri-urbaine.</p>
-            </div>
+    <div style="margin: 20px 0; padding: 20px; border: 1px solid #e1e4e8; border-left: 5px solid #f7971e; border-radius: 8px; background: #fafafa;">
+        <span style="font-weight: bold; font-size: 1.2em; color: #f7971e; text-transform: uppercase;">mixmix92</span>
+        <p style="margin-top: 10px; font-style: italic; color: #444;">
+            "Étudiant en génie industriel, je suis passionné par l'impression 3D, la modélisation et la réalisation de projets en général. La concrétisation de ces derniers me permet d'acquérir un large panel de compétences, avec pour objectif de ne devenir expert en rien, mais d'être bon en tout."
+        </p>
+    </div>
+
+</div>
         </article>
 
         <section style="margin-top: 80px; border-top: 1px solid var(--secondary); padding-top: 40px;">
@@ -135,13 +131,13 @@
             <div class="grid">
                 <div class="card">
                     <small>TUTO</small>
-                    <h3>Optimiser ses impressions 3D</h3>
-                    <p>Réglages fins pour des pièces mécaniques résistantes.</p>
+                    <h3>Comming Soon ...</h3>
+                    <p>...</p>
                 </div>
                 <div class="card">
                     <small>TUTO</small>
-                    <h3>Réaliser des PCB</h3>
-                    <p>Découvrez comment réaliser des PCB professionnels.</p>
+                    <h3>Comming Soon ...</h3>
+                    <p>...</p>
                 </div>
             </div>
         </section>
