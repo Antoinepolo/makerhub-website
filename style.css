@@ -1,6 +1,5 @@
-/* ==========================================
-   VARIABLES ET CONFIGURATION
-   ========================================== */
+/* Gestion globale */
+
 :root {
     --bg: #f5f5f7;
     --text: #1a1a1a;
@@ -24,9 +23,8 @@
 * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease; }
 body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
 
-/* ==========================================
-   NAVIGATION
-   ========================================== */
+/* Barre de navigation */
+
 nav {
     position: fixed;
     width: 100%;
@@ -69,9 +67,9 @@ nav {
     margin-left: auto;
 }
 
-/* ==========================================
-   HERO & SECTIONS
-   ========================================== */
+
+/* Section et Hero */
+
 section { padding: 100px 10%; opacity: 0; transform: translateY(20px); }
 section.visible { opacity: 1; transform: translateY(0); }
 
@@ -94,9 +92,8 @@ section h2 { margin-bottom: 2.5rem; font-size: 2rem; font-weight: 700; }
 }
 .btn-discord:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4); }
 
-/* ==========================================
-   COMPOSANTS (Grilles, Cartes, Badges)
-   ========================================== */
+/* Grille, carte et badge */
+
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
 .stack { display: flex; flex-direction: column; gap: 20px; }
 
@@ -109,8 +106,7 @@ section h2 { margin-bottom: 2.5rem; font-size: 2rem; font-weight: 700; }
 .card:hover { border-color: var(--primary); transform: translateY(-5px); }
 .card h3 { margin-bottom: 1rem; color: var(--accent); }
 
-/* --- Styles pour cartes cliquables --- */
-.clickable-card { padding: 0; overflow: hidden; } /* On retire le padding de la div pour que le lien prenne tout l'espace */
+.clickable-card { padding: 0; overflow: hidden; }
 .clickable-card a { 
     display: block; 
     padding: 2.5rem; 
@@ -119,7 +115,6 @@ section h2 { margin-bottom: 2.5rem; font-size: 2rem; font-weight: 700; }
     height: 100%; 
     width: 100%; 
 }
-/* ------------------------------------- */
 
 .card-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
 .badge { background: var(--secondary); color: var(--bg); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
@@ -128,7 +123,9 @@ section h2 { margin-bottom: 2.5rem; font-size: 2rem; font-weight: 700; }
 .staff-card { text-align: center; }
 .staff-avatar { width: 80px; height: 80px; background: var(--secondary); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
 
-/* Typewriter Cursor */
+
+/* Curseur pour l'effet clavier */
+
 .cursor { font-weight: 300; color: var(--primary); animation: blink 1s infinite; margin-left: 5px; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 

@@ -1,12 +1,10 @@
-/* ==========================================
-   INITIALISATION ET THEME
-   ========================================== */
+// Gestion du thème
+
 lucide.createIcons();
 
 const themeBtn = document.getElementById('themeBtn');
 const body = document.body;
 
-// --- LE TRUC EN PLUS : Charger le thème sauvegardé dès l'ouverture de l'index ---
 const savedTheme = localStorage.getItem('theme') || 'light';
 body.setAttribute('data-theme', savedTheme);
 updateIcon(savedTheme);
@@ -17,21 +15,20 @@ themeBtn.addEventListener('click', () => {
     
     body.setAttribute('data-theme', newTheme);
     
-    // --- LE TRUC EN PLUS : Sauvegarder le choix ---
     localStorage.setItem('theme', newTheme);
     
     updateIcon(newTheme);
 });
 
-// Fonction pour mettre à jour l'icône proprement
+// Gestion de l'icone du thème
+
 function updateIcon(theme) {
     themeBtn.innerHTML = theme === 'dark' ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
     lucide.createIcons();
 }
 
-/* ==========================================
-   ANIMATION AU SCROLL (Intersection Observer)
-   ========================================== */
+// Animation scroll
+
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -40,9 +37,8 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-/* ==========================================
-   ANIMATION TYPEWRITER (Titre Hero)
-   ========================================== */
+// Titre qui défile
+
 const textElement = document.getElementById('typewriter');
 const phrases = [
     "Construire le futur...",

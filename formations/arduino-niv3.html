@@ -7,7 +7,6 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="../style.css">
     <style>
-        /* Structure pour coller le footer en bas */
         body {
             display: flex;
             flex-direction: column;
@@ -21,7 +20,6 @@
             padding: 0 20px; 
         }
 
-        /* Nettoyage des animations de la page d'accueil */
         section { 
             padding: 40px 0 !important; 
             opacity: 1 !important; 
@@ -138,34 +136,28 @@
     </footer>
 
     <script>
-        // 1. Initialisation des icônes Lucide
         lucide.createIcons();
 
         const themeBtn = document.getElementById('themeBtn');
         const body = document.body;
 
-        // 2. RÉCUPÉRATION : Dès que la page charge, on regarde si on a une préférence enregistrée
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             body.setAttribute('data-theme', savedTheme);
             updateIcon(savedTheme);
         }
 
-        // 3. ACTION : Gestion du clic sur le bouton
         themeBtn.addEventListener('click', () => {
             const currentTheme = body.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             
-            // On applique le nouveau thème
             body.setAttribute('data-theme', newTheme);
             
-            // SAUVEGARDE : On enregistre le choix pour les autres pages
             localStorage.setItem('theme', newTheme);
             
             updateIcon(newTheme);
         });
 
-        // Fonction pour mettre à jour l'icône sans recharger la page
         function updateIcon(theme) {
             themeBtn.innerHTML = theme === 'light' ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
             lucide.createIcons();
