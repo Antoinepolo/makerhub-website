@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qui sommes nous | Maker Hub</title>
+    <title>Tutoriel DAC Externe | Maker Hub</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="../style.css">
     <style>
@@ -80,13 +80,13 @@
 
         <article>
             <header>
-                <small style="color: var(--accent); font-weight: bold; text-transform: uppercase;">Informations</small>
-                <h1 style="font-size: 2.5rem; margin: 10px 0;">Qui sommes nous</h1>
+                <small style="color: var(--accent); font-weight: bold; text-transform: uppercase;">Turoriel</small>
+                <h1 style="font-size: 2.5rem; margin: 10px 0;">Tutoriel DAC Externe</h1>
                 
                 <div class="article-meta">
                     <span class="meta-item">
                         <i data-lucide="calendar" size="18"></i> 
-                        18 Avril 2026
+                        26 Avril 2026
                     </span>
                     <span class="meta-item">
                         <i data-lucide="user" size="18"></i> 
@@ -94,50 +94,79 @@
                     </span>
                     <span class="meta-item">
                         <i data-lucide="clock" size="18"></i> 
-                        5 min de lecture
+                        10 min de lecture
                     </span>
                 </div>
             </header>
 
-            <div class="article-content" style="max-width: 900px; margin: 20px auto; font-family: sans-serif; line-height: 1.6; color: #333;">
+            <div class="article-content">
+                <p>Un DAC, ou Digital-to-Analog Converter, permet de transformer une donnée numérique en une valeur analogique. Dans cet article, nous allons brièvement explorer l'utilisation d'un AD5626, qui est un DAC de 12 bits fonctionnant en SPI avec un Arduino Nano.</p>
+                
+                <img src="images/arduino_dac_photo.jpg" alt="photo_montage">
 
-    <h2 style="margin-top: 30px; border-bottom: 2px solid var(--secondary); padding-bottom: 5px; color: var(--text);">Le projet</h2>
+                <h2>Le Matériel Utilisé</h2>
+                <ul>
+                    <li>Arduino Nano</li>
+                    <li>AD5626</li>
+                    <li>Fils de connexion</li>
+                </ul>
 
-    <div class="article-content" style="max-width: 900px; margin: 20px auto; font-family: sans-serif; line-height: 1.6;">
-        
-        <p style="padding: 15px; border-left: 6px solid #4facfe; background: rgba(79, 172, 254, 0.1); border-radius: 4px; color: var(--text);">
-            <strong style="color: #007bff;">Maker Hub</strong> est un projet <strong>créé et géré</strong> par des étudiants, permettant de discuter, s'informer et apprendre dans divers domaines liés aux nouvelles technologies. Peu importe votre niveau, vous êtes les bienvenus et vous trouverez toujours quelque chose à faire ou des gens avec qui discuter !
-        </p>
+                <h2>Schéma</h2>
+                <img src="images/arduino_dac_montage.png" alt="photo_fritzing">
 
-        <h2 style="margin-top: 30px; border-bottom: 2px solid var(--secondary); padding-bottom: 5px; color: var(--text);">Qui sommes-nous ?</h2>
+                <h2>Programme</h2>
+                <div class="code-block">
+                    #include &quot;AD5626.h&quot;<br>
+                    <br>
+                    // On crée l'objet DAC sur la broche 10<br>
+                    AD5626 monDAC(10);<br>
+                    <br>
+                    // Prototype de la fonction de conversion<br>
+                    float readTension(int pin);<br>
+                    <br>
+                    void setup() {<br>
+                    &nbsp;&nbsp;monDAC.begin();<br>
+                    &nbsp;&nbsp;Serial.begin(9600);<br>
+                    }<br>
+                    <br>
+                    void loop() {<br>
+                    &nbsp;&nbsp;monDAC.setValue(1000); // On demande une sortie de 1000 mV<br>
+                    &nbsp;&nbsp;Serial.print(&quot;Valeur:&quot;); // On affiche la valeur<br>
+                    &nbsp;&nbsp;Serial.println(readTension(A0));<br>
+                    &nbsp;&nbsp;delay(2000); // On fait un délai<br>
+                    <br>
+                    &nbsp;&nbsp;monDAC.setValue(2000); // On demande une sortie de 2000 mV<br>
+                    &nbsp;&nbsp;Serial.print(&quot;Valeur:&quot;);<br>
+                    &nbsp;&nbsp;Serial.println(readTension(A0));<br>
+                    &nbsp;&nbsp;delay(2000);<br>
+                    <br>
+                    &nbsp;&nbsp;monDAC.setValue(4000); // On demande une sortie de 4000 mV<br>
+                    &nbsp;&nbsp;Serial.print(&quot;Valeur:&quot;);<br>
+                    &nbsp;&nbsp;Serial.println(readTension(A0));<br>
+                    &nbsp;&nbsp;delay(2000);<br>
+                    }<br>
+                    <br>
+                    // Fonction de conversion<br>
+                    float readTension(int pin) {<br>
+                    &nbsp;&nbsp;int valeurBrute = analogRead(pin);<br>
+                    &nbsp;&nbsp;float tension = valeurBrute * (5.0 / 1024.0);<br>
+                    &nbsp;&nbsp;return tension;<br>
+                    }
+                </div>
 
-        <div style="margin: 20px 0; padding: 20px; border: 1px solid var(--secondary); border-left: 5px solid #0052D4; border-radius: 8px; background: var(--card-bg);">
-            <span style="font-weight: bold; font-size: 1.2em; color: #0052D4; text-transform: uppercase;">Antoine</span>
-            <p style="margin-top: 10px; font-style: italic; color: var(--text); opacity: 0.9;">
-                "Passionné d'électronique et d'informatique, j'ai créé cet espace pour partager et discuter autour de ces sujets. Du homelab à la cybersécurité que j'étudie actuellement à Namur, je cultive une curiosité pour les nouvelles technologies."
-            </p>
-        </div>
-
-        <div style="margin: 20px 0; padding: 20px; border: 1px solid var(--secondary); border-left: 5px solid #f7971e; border-radius: 8px; background: var(--card-bg);">
-            <span style="font-weight: bold; font-size: 1.2em; color: #f7971e; text-transform: uppercase;">mixmix92</span>
-            <p style="margin-top: 10px; font-style: italic; color: var(--text); opacity: 0.9;">
-                "Étudiant en génie industriel, je suis passionné par l'impression 3D, la modélisation et la réalisation de projets en général. La concrétisation de ces derniers me permet d'acquérir un large panel de compétences, avec pour objectif de ne devenir expert en rien, mais d'être bon en tout."
-            </p>
-        </div>
-
-    </div>
-
-</div>
+                <h2>En savoir plus</h2>
+                <p>Afin d'en apprendre plus sur les DAC, nous vous invitons à lire notre documentation disponible dans la formation Arduino de niveau II.</p>
+            </div>
         </article>
 
         <section style="margin-top: 80px; border-top: 1px solid var(--secondary); padding-top: 40px;">
             <h3 style="margin-bottom: 20px;">D'autres articles qui pourraient vous plaire</h3>
             <div class="grid">
                 <div class="card">
-                    <a href="dac.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
-                    <small>TUTO</small>
-                    <h3>Tutoriel DAC Externe</h3>
-                    <pApprenez à utiliser un DAC externe avec un Arduinop>
+                    <a href="mkhb.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
+                    <small>NOUVEAU</small>
+                    <h3>Qui sommes nous</h3>
+                    <p>Découvrez qui nous sommes.</p>
                 </div>
                 <div class="card">
                     <small>TUTO</small>
