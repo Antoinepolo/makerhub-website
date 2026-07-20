@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutoriel DAC Externe | Maker Hub</title>
+    <title>Introduction à la Logique TTL | Maker Hub</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="../style.css">
     <style>
@@ -66,16 +66,35 @@
 
         .article-content img { width: 100%; border-radius: 12px; margin: 25px 0; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
         
-        .code-block { 
-            background: #1e1e1e; 
-            color: #d4d4d4; 
-            padding: 20px; 
-            border-radius: 10px; 
-            font-family: 'Courier New', monospace; 
-            overflow-x: auto; 
-            margin: 25px 0; 
-            border: 1px solid #333; 
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        /* Amélioration des tableaux (effet moderne, coins arrondis, lignes épurées) */
+        .article-content table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 25px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--secondary);
+        }
+
+        .article-content th, .article-content td {
+            padding: 14px 18px;
+            text-align: center;
+        }
+
+        .article-content th {
+            background-color: var(--accent);
+            color: white;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .article-content tr:not(:last-child) td {
+            border-bottom: 1px solid var(--secondary);
+        }
+
+        .article-content tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.02);
         }
 
         /* Boîte d'information stylisée pour "En savoir plus" */
@@ -116,8 +135,8 @@
 
         <article>
             <header>
-                <small style="color: var(--accent); font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Tutoriel</small>
-                <h1 style="font-size: 2.6rem; margin: 10px 0; font-weight: 800;">Tutoriel DAC Externe</h1>
+                <small style="color: var(--accent); font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Documentation</small>
+                <h1 style="font-size: 2.6rem; margin: 10px 0; font-weight: 800;">Introduction à la Logique TTL</h1>
                 
                 <div class="article-meta">
                     <span class="meta-item">
@@ -130,69 +149,81 @@
                     </span>
                     <span class="meta-item">
                         <i data-lucide="clock" size="18"></i> 
-                        10 min de lecture
+                        15 min de lecture
                     </span>
                 </div>
             </header>
 
             <div class="article-content">
-                <p>Un DAC, ou Digital-to-Analog Converter, permet de transformer une donnée numérique en une valeur analogique. Dans cet article, nous allons brièvement explorer l'utilisation d'un AD5626, qui est un DAC de 12 bits fonctionnant en SPI avec un Arduino Nano.</p>
-                
-                <img src="images/arduino_dac_photo.jpg" alt="photo_montage">
+                <p>La technologie <strong>TTL (Transistor-Transistor Logic)</strong> est un pilier fondamental de l'électronique numérique. Popularisée à grande échelle par Texas Instruments avec la célèbre série 7400, elle utilise des transistors bipolaires pour réaliser les fonctions logiques de base.</p>
 
-                <h2>Le Matériel Utilisé</h2>
+                <h2>Principe de Fonctionnement : La Porte NAND</h2>
+                <p>Le cœur de la logique TTL repose sur l'utilisation de transistors à multi-émetteurs en entrée. Prenons l'exemple d'une porte NAND standard :</p>
                 <ul>
-                    <li>Arduino Nano</li>
-                    <li>AD5626</li>
-                    <li>Fils de connexion</li>
+                    <li>Si l'une des entrées est à l'état bas (0 V), le courant de la résistance de base est dérivé vers la masse, bloquant ainsi le transistor suivant (Q2). La sortie bascule alors à l'état haut.</li>
+                    <li>Pour que le transistor Q2 se sature et que la sortie passe à l'état bas (0), il est impératif que <strong>toutes</strong> les entrées soient simultanément à l'état haut (1).</li>
                 </ul>
 
-                <h2>Schéma</h2>
-                <img src="images/arduino_dac_montage.png" alt="photo_fritzing">
+                <h2>Table de Vérité de la Porte NAND</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Entrée A</th>
+                            <th>Entrée B</th>
+                            <th>Sortie (NAND)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                <h2>Programme</h2>
-                <div class="code-block">
-                    #include &quot;AD5626.h&quot;<br>
-                    <br>
-                    // On crée l'objet DAC sur la broche 10<br>
-                    AD5626 monDAC(10);<br>
-                    <br>
-                    // Prototype de la fonction de conversion<br>
-                    float readTension(int pin);<br>
-                    <br>
-                    void setup() {<br>
-                    &nbsp;&nbsp;monDAC.begin();<br>
-                    &nbsp;&nbsp;Serial.begin(9600);<br>
-                    }<br>
-                    <br>
-                    void loop() {<br>
-                    &nbsp;&nbsp;monDAC.setValue(1000); // On demande une sortie de 1000 mV<br>
-                    &nbsp;&nbsp;Serial.print(&quot;Valeur:&quot;); // On affiche la valeur<br>
-                    &nbsp;&nbsp;Serial.println(readTension(A0));<br>
-                    &nbsp;&nbsp;delay(2000); // On fait un délai<br>
-                    <br>
-                    &nbsp;&nbsp;monDAC.setValue(2000); // On demande une sortie de 2000 mV<br>
-                    &nbsp;&nbsp;Serial.print(&quot;Valeur:&quot;);<br>
-                    &nbsp;&nbsp;Serial.println(readTension(A0));<br>
-                    &nbsp;&nbsp;delay(2000);<br>
-                    <br>
-                    &nbsp;&nbsp;monDAC.setValue(4000); // On demande une sortie de 4000 mV<br>
-                    &nbsp;&nbsp;Serial.print(&quot;Valeur:&quot;);<br>
-                    &nbsp;&nbsp;Serial.println(readTension(A0));<br>
-                    &nbsp;&nbsp;delay(2000);<br>
-                    }<br>
-                    <br>
-                    // Fonction de conversion<br>
-                    float readTension(int pin) {<br>
-                    &nbsp;&nbsp;int valeurBrute = analogRead(pin);<br>
-                    &nbsp;&nbsp;float tension = valeurBrute * (5.0 / 1024.0);<br>
-                    &nbsp;&nbsp;return tension;<br>
-                    }
-                </div>
+                <h2>Niveaux Logiques et Tensions</h2>
+                <p>Pour assurer une communication fiable et tolérante aux perturbations entre les différents circuits de la famille TTL (et ses variantes comme le 74LS), des plages de tension strictes sont définies :</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>État Logique</th>
+                            <th>Tension d'Entrée ($V_{in}$)</th>
+                            <th>Tension de Sortie ($V_{out}$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Bas (0)</strong></td>
+                            <td>0 V à 0,8 V</td>
+                            <td>0 V à 0,4 V</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Haut (1)</strong></td>
+                            <td>2,0 V à 5,0 V</td>
+                            <td>2,4 V à 5,0 V</td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <div class="info-box">
                     <h2 style="margin-top: 0; border: none; padding: 0; font-size: 1.3rem;">En savoir plus</h2>
-                    <p style="margin-bottom: 0;">Afin d'en apprendre plus sur les DAC, nous vous invitons à lire notre documentation disponible dans la formation Arduino de niveau II.</p>
+                    <p style="margin-bottom: 0;">Afin d'en apprendre plus sur la conception des systèmes numériques et l'électronique embarquée, nous vous invitons à parcourir <a href="https://github.com/Antoinepolo/makerhub-docs/blob/main/Maker%20Hub%20Lab/%C3%89lectronique%20Num%C3%A9rique/Introduction%20Logique%20Combinatoire.pdf" target="_blank">notre documentation</a>.</p>
                 </div>
             </div>
         </article>
@@ -200,17 +231,17 @@
         <section style="margin-top: 80px; border-top: 1px solid var(--secondary); padding-top: 40px;">
             <h3 style="margin-bottom: 20px;">D'autres articles qui pourraient vous plaire</h3>
             <div class="grid">
-                <div class="card" style="position: relative;">
+                <div class="card">
                     <a href="mkhb.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
-                    <small>INFO</small>
+                    <small>NOUVEAU</small>
                     <h3>Qui sommes nous</h3>
                     <p>Découvrez qui nous sommes.</p>
                 </div>
                 <div class="card" style="position: relative;">
-                    <a href="ttl.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
-                    <small>NOUVEAU</small>
-                    <h3>Introduction à la logique combinatoire</h3>
-                    <p>Découvrez comment fonctionnent les circuits intégrés en plongeant dans la puce !</p>
+                    <a href="dac.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
+                    <small>TUTO</small>
+                    <h3>Tutoriel DAC Externe</h3>
+                    <p>Apprenez à utiliser un DAC externe avec un Arduino</p>
                 </div>
             </div>
         </section>
