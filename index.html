@@ -1,385 +1,550 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maker Hub | Communauté Tech</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dark: '#0a0e17',
+                            card: '#111827',
+                            border: '#1f2937',
+                            neon: '#00ff9d',
+                            cyan: '#00e5ff',
+                            purple: '#a855f7',
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['"JetBrains Mono", "SF Mono", Consolas, monospace'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* Gestion globale */
-        :root {
-            --bg: #f8fafc;
-            --text: #0f172a;
-            --primary: #0284c7;
-            --secondary: #64748b;
-            --card-bg: #ffffff;
-            --nav-bg: rgba(248, 250, 252, 0.85);
-            --accent: #0284c7;
-            --border-color: rgba(226, 232, 240, 0.8);
-            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 20px 40px -10px rgba(2, 132, 199, 0.15);
+        body {
+            background-color: #0a0e17;
+            color: #e2e8f0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0e17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff9d;
+        }
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
         }
 
-        [data-theme="dark"] {
-            --bg: #090a0f;      
-            --text: #f1f5f9;    
-            --primary: #38bdf8; 
-            --secondary: #94a3b8;
-            --card-bg: #13161f; 
-            --nav-bg: rgba(9, 10, 15, 0.9);
-            --accent: #38bdf8;
-            --border-color: rgba(255, 255, 255, 0.06);
-            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
-            --shadow-hover: 0 20px 40px -10px rgba(56, 189, 248, 0.15);
+        @keyframes matrix-glow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(90deg); }
+        }
+        .text-matrix {
+            background: linear-gradient(to right, #00ff9d, #00e5ff, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: matrix-glow 5s ease-in-out infinite alternate;
+        }
+        .text-gradient-rose {
+            background: linear-gradient(to right, #f43f5e, #fb7185);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+        .text-rainbow {
+            background: linear-gradient(to right, #f778ba, #a855f7, #00e5ff, #00ff9d, #f1e05a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow 6s linear infinite;
         }
-
-        body { 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
-            background: var(--bg); 
-            color: var(--text); 
-            line-height: 1.7; 
-            overflow-x: hidden; 
+        .text-gradient-purple {
+            background: linear-gradient(to right, #a855f7, #f778ba);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        /* Barre de navigation */
-        nav {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            background: var(--nav-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            z-index: 1000;
-            padding: 1rem 5%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--border-color);
+        .text-gradient-ocean {
+            background: linear-gradient(to right, #00e5ff, #00ff9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .logo-img { width: 42px; height: 42px; object-fit: contain; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .logo-text { font-weight: 800; font-size: 1.35rem; color: var(--text); letter-spacing: -0.5px; }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+        .text-gradient-amber {
+            background: linear-gradient(to right, #f59e0b, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        .nav-links a { text-decoration: none; color: var(--secondary); font-weight: 600; font-size: 0.95rem; position: relative; padding: 4px 0; }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
-        }
-        .nav-links a:hover { color: var(--text); }
-        .nav-links a:hover::after { width: 100%; }
-
-        .theme-toggle { 
-            cursor: pointer; 
-            background: var(--card-bg); 
-            border: 1px solid var(--border-color); 
-            color: var(--text); 
-            padding: 10px; 
-            border-radius: 12px; 
-            display: flex; 
-            align-items: center;
-            justify-content: center;
-            margin-left: auto;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-        .theme-toggle:hover { border-color: var(--primary); transform: scale(1.05); }
-
-        /* Section et Hero */
-        section { padding: 110px 8%; opacity: 0; transform: translateY(20px); }
-        section.visible { opacity: 1; transform: translateY(0); }
-
-        section h2 { margin-bottom: 2.5rem; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; position: relative; display: inline-block; }
-        section h2::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 40px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-
-        .hero { text-align: center; padding: 200px 10% 130px; position: relative; }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 0%, rgba(0,0,0,0) 70%);
-            z-index: -1;
-            pointer-events: none;
-        }
-        .hero h1 { font-size: 4rem; font-weight: 900; margin-bottom: 1.2rem; color: var(--text); min-height: 1.2em; letter-spacing: -1.5px; }
-        .hero p { font-size: 1.25rem; color: var(--secondary); max-width: 650px; margin: 0 auto; }
-
-        .btn-discord { 
-            background: #5865F2; 
-            color: white; 
-            padding: 15px 32px; 
-            border-radius: 14px; 
-            text-decoration: none; 
-            display: inline-block; 
-            margin-top: 2.5rem; 
-            font-weight: 600; 
-            font-size: 1.05rem;
-            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.35); 
-        }
-        .btn-discord:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(88, 101, 242, 0.45); background: #4752c4; }
-
-        /* Grille, carte et badge */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.8rem; }
-        .stack { display: flex; flex-direction: column; gap: 20px; }
-
-        .card { 
-            background: var(--card-bg); 
-            padding: 2.5rem; 
-            border-radius: 20px; 
-            border: 1px solid var(--border-color); 
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-        .card:hover { 
-            border-color: var(--primary); 
-            transform: translateY(-6px); 
-            box-shadow: var(--shadow-hover);
-        }
-        .card h3 { margin-bottom: 0.8rem; color: var(--text); font-size: 1.3rem; font-weight: 700; }
-        .card p { color: var(--secondary); font-size: 1.02rem; }
-        .card i { color: var(--primary); width: 32px; height: 32px; }
-
-        .clickable-card { padding: 0; }
-        .clickable-card a { 
-            display: block; 
-            padding: 2.5rem; 
-            text-decoration: none; 
-            color: inherit; 
-            height: 100%; 
-            width: 100%; 
-        }
-        .clickable-card small {
-            display: inline-block;
-            color: var(--primary);
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            margin-bottom: 0.8rem;
-            background: rgba(2, 132, 199, 0.1);
-            padding: 4px 10px;
-            border-radius: 6px;
-        }
-
-        .card-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
-        .badge { background: var(--secondary); color: var(--bg); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
-
-        /* Staff */
-        .staff-card { text-align: center; padding: 3rem 2rem; }
-        .staff-avatar { width: 90px; height: 90px; background: rgba(2, 132, 199, 0.1); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; border: 2px solid var(--border-color); }
-        .staff-card h4 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
-        .staff-card p { font-size: 0.95rem; color: var(--secondary); margin: 2px 0; }
-
-        /* Curseur pour l'effet clavier */
-        .cursor { font-weight: 300; color: var(--primary); animation: blink 1s infinite; margin-left: 2px; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-        footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border-color); color: var(--secondary); font-size: 0.95rem; background: var(--card-bg); }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero { padding: 160px 6% 100px; }
-            .hero h1 { font-size: 2.6rem; }
-            section { padding: 80px 5%; }
+        .glow-cyan {
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.1);
         }
     </style>
 </head>
-<body data-theme="light"> 
+<body class="min-h-screen flex flex-col justify-between selection:bg-[#00ff9d] selection:text-black">
 
     <!-- Barre de navigation -->
+    <header class="border-b border-slate-800 px-4 py-3 bg-[#111827]/90 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 text-decoration-none">
+                <img src="images/logo.png" alt="Logo" class="w-8 h-8 object-contain rounded-lg shadow-md border border-slate-700">
+                <span class="text-white font-bold text-sm tracking-tight">MAKER HUB</span>
+            </a>
+            
+            <nav class="flex space-x-4 md:space-x-6 text-xs md:text-sm">
+                <a href="#presentation" class="text-[#00ff9d] border-b-2 border-[#00ff9d] pb-1 transition-colors">Concept</a>
+                <a href="#articles" class="text-slate-400 hover:text-white pb-1 transition-colors">Blog</a>
+                <a href="#apprentissage" class="text-slate-400 hover:text-white pb-1 transition-colors">Formation</a>
+                <a href="#terminal-section" class="text-slate-400 hover:text-[#00e5ff] pb-1 transition-colors">CLI</a>
+                <a href="#staff" class="text-slate-400 hover:text-white pb-1 transition-colors">Staff</a>
+            </nav>
 
-    <nav>
-        <a href="#" class="logo-container">
-            <img src="images/logo.png" alt="Logo" class="logo-img">
-            <span class="logo-text">MAKER HUB</span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="#presentation">Concept</a></li>
-            <li><a href="#articles">Blog</a></li>
-            <li><a href="#apprentissage">Formation</a></li>
-            <li><a href="#staff">Staff</a></li>
-        </ul>
-        <button class="theme-toggle" id="themeBtn"><i data-lucide="sun"></i></button>
-    </nav>
-
-    <header class="hero">
-        <h1><span id="typewriter"></span><span class="cursor">|</span></h1>
-        <p>L'espace communautaire dédié à l'électronique, au code et à la fabrication numérique.</p>
-        <a href="https://discord.gg/QNEzFvfCaS" class="btn-discord">Rejoindre le Hub</a>
+            <div class="hidden sm:flex items-center space-x-3 text-xs text-slate-400">
+                <span class="text-cyan-400">status: online</span>
+                <div class="w-2 h-2 rounded-full bg-[#00ff9d] animate-pulse"></div>
+            </div>
+        </div>
     </header>
 
-    <!-- Présentation -->
-
-    <section id="presentation">
-
-        <h2>Le projet</h2>
-
-        <div style="border-left: 3px solid #64748b; padding-left: 16px; margin-top: 20px;">
-            <p style="line-height: 1.7; font-size: 1.05rem; margin-bottom: 16px;">MakerHub a été créé afin de partager des connaissances, discuter, créer des contacts, ... dans les domaines de la Maker Culture. L'objectif étant de regrouper tous types de personnes, passionnés, étudiants ou bien professionnels, tout le monde est le bienvenu !</p>
-
-            <p style="line-height: 1.7; font-size: 1.05rem; margin-bottom: 16px;">La décision de créer le projet s'est faite suite à un constat, il existe de nombreux sites, chaînes, forums, ... autour de la Maker Culture, mais ces derniers ne traitent pas de certains sujets plus avancés, l'objectif de MakerHub est donc de renforcer la couverture de ces sujets en fournissant des explications claires et accessibles à tous.</p>
-
-            <p style="line-height: 1.7; font-size: 1.05rem; margin-bottom: 0;">Ce site ne constitue qu'une vitrine permettant l'accès aux diverses ressources, les discussions, forums et projets se trouvent sur notre serveur discord, et la documentation est disponible sur GitHub, par manque de temps nous ne produisons pas constamment des articles sur le site pour la sortie de nouvelle documentation ou projet.</p>
-        </div>
-
-        <br><br><br>
-
-        <div class="grid">
-            <div class="card">
-                <i data-lucide="cpu" style="margin-bottom:1rem"></i>
-                <h3>Électronique</h3>
-                <p>De la conception de circuits à la programmation de micro-contrôleurs.</p>
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto w-full p-4 md:p-6 flex-grow space-y-16">
+        
+        <!-- Hero Section -->
+        <div class="border border-slate-800 bg-[#111827] rounded-xl p-6 md:p-12 font-mono text-xs md:text-sm glow-cyan space-y-6 text-center mt-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="text-[#00ff9d]">
+                    <span class="text-white font-bold">root@maker-hub</span>:$ <span class="text-slate-300">cat ./welcome.md</span>
+                </div>
+                <div class="flex space-x-1.5">
+                    <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
+                    <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+                    <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+                </div>
             </div>
-            <div class="card">
-                <i data-lucide="settings" style="margin-bottom:1rem"></i>
-                <h3>Ingénierie</h3>
-                <p>Partage de connaissances théoriques et pratiques en mécanique et système.</p>
+            <div class="space-y-4 max-w-3xl mx-auto">
+                <h1 class="text-2xl md:text-4xl font-extrabold text-rainbow leading-snug">
+                    <span id="typewriter"></span><span class="text-[#00ff9d] animate-pulse">|</span>
+                </h1>
+                <p class="text-slate-400 text-xs md:text-sm">
+                    L'espace communautaire dédié à la Maker Culture.
+                </p>
             </div>
-            <div class="card">
-                <i data-lucide="wrench" style="margin-bottom:1rem"></i>
-                <h3>Maker Culture</h3>
-                <p>Impression 3D, CNC, bois et métal. L'art de fabriquer soi-même.</p>
-            </div>
-        </div>
-        <div class="grid" style="margin-top: 25px;">
-            <div class="card">
-                <i data-lucide="shield-check" style="margin-bottom:1rem"></i>
-                <h3>Cybersécurité</h3>
-                <p>CTF, sécurisation de système.</p>
-            </div>
-            <div class="card">
-                <i data-lucide="terminal" style="margin-bottom:1rem"></i>
-                <h3>Informatique</h3>
-                <p>Système d'exploitation, programmation, réseau.</p>
-            </div>
-            <div class="card">
-                <i data-lucide="users" style="margin-bottom:1rem"></i>
-                <h3>Rencontre</h3>
-                <p>Étudiant, passionné, professionnel et bien plus.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Article & Projet -->
-
-    <section id="articles">
-        <h2>Articles & Projets</h2>
-        <div class="grid" style="margin-top: 20px;">
-            <div class="card clickable-card">
-                <a href="articles/mkhb.html">
-                    <small>INFO</small>
-                    <h3>Maker Hub</h3>
-                    <p>Découvrez qui nous sommes</p>
-                </a>
-            </div>
-            <div class="card clickable-card">
-                <a href="articles/ttl.html">
-                    <small>NOUVEAU</small>
-                    <h3>Intruduction à la logique combinatoire</h3>
-                    <p>Découvrez comme fonctionne les circuits intégrés en plangeant dans la puce !</p>
-                </a>
-            </div>
-            <div class="card clickable-card">
-                <a href="articles/dac.html">
-                    <small>TUTO</small>
-                    <h3>Tutoriel DAC externe</h3>
-                    <p>Apprenez à utiliser un DAC externe avec un Arduino</p>
+            <div class="pt-2 flex flex-wrap justify-center gap-4">
+                <a href="https://discord.gg/QNEzFvfCaS" target="_blank" class="bg-emerald-500/10 hover:bg-emerald-500/20 text-[#00ff9d] border border-emerald-500/30 px-6 py-3 rounded-xl transition-all inline-flex items-center space-x-2 font-bold text-sm">
+                    <i class="fa-brands fa-discord text-base"></i>
+                    <span>Rejoindre le Hub</span>
                 </a>
             </div>
         </div>
-    </section>
 
-    <!-- Apprentissage -->
-
-    <section id="apprentissage">
-        <h2>Apprentissage</h2>
-        <div class="stack" style="display: flex; flex-direction: column; gap: 20px;"> 
-            <div class="card clickable-card" style="position: relative; padding: 40px;">
-                <a href="formations/arduino-niv1.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
-                <h3 style="margin-bottom: 10px;">Arduino - Niveau I</h3>
-                <p style="margin: 0;">Apprenez les bases de l'Arduino.</p>
+        <!-- Présentation -->
+        <section id="presentation" class="space-y-8">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3 font-mono text-xs">
+                <div class="text-[#00ff9d] font-semibold">$ cat ./about/projet.md</div>
+                <div class="text-slate-500">[Le projet]</div>
             </div>
 
-            <div class="card clickable-card" style="position: relative; padding: 40px;">
-                <a href="formations/arduino-niv2.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
-                <h3 style="margin-bottom: 10px;">Arduino - Niveau II</h3>
-                <p style="margin: 0;">Devenez un vrai professionnel de l'Arduino.</p>
+            <div class="border border-slate-800 bg-[#111827] rounded-xl p-6 md:p-8 space-y-4 text-slate-300 text-xs md:text-sm leading-relaxed border-l-4 border-l-[#00ff9d]">
+                <p>MakerHub a été créé afin de partager des connaissances, discuter, créer des contacts, ... dans les domaines de la Maker Culture. L'objectif étant de regrouper tous types de personnes, passionnés, étudiants ou bien professionnels, tout le monde est le bienvenu !</p>
+
+                <p>La décision de créer le projet s'est faite suite à un constat, il existe de nombreux sites, chaînes, forums, ... autour de la Maker Culture, mais ces derniers ne traitent pas de certains sujets plus avancés, l'objectif de MakerHub est donc de renforcer la couverture de ces sujets en fournissant des explications claires et accessibles à tous.</p>
+
+                <p class="mb-0">Ce site ne constitue qu'une vitrine permettant l'accès aux diverses ressources, les discussions, forums et projets se trouvent sur notre serveur discord, et la documentation est disponible sur GitHub, par manque de temps nous ne produisons pas constamment des articles sur le site pour la sortie de nouvelle documentation ou projet.</p>
             </div>
 
-            <div class="card clickable-card" style="position: relative; padding: 40px;">
-                <a href="formations/arduino-niv3.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
-                <h3 style="margin-bottom: 10px;">Arduino - Niveau III</h3>
-                <p style="margin: 0;">Découvrez le monde des puces ARM.</p>
+<!-- Grilles de présentation (Style Bento Asymétrique) -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 font-mono text-xs pt-2">
+                
+                <div class="md:col-span-2 border border-slate-800 bg-[#111827] rounded-xl p-6 space-y-3 hover:border-emerald-500/50 transition-colors flex flex-col justify-between">
+                    <div class="flex justify-between items-center">
+                        <i class="fa-solid fa-wrench text-[#00ff9d] text-lg"></i>
+                        <span class="text-[10px] px-2.5 py-1 rounded bg-emerald-500/10 text-[#00ff9d] border border-emerald-500/20">Fab</span>
+                    </div>
+                    <div class="space-y-1">
+                        <h3 class="text-white font-bold text-sm text-rainbow">Maker Culture</h3>
+                        <p class="text-slate-400 text-[11px]">Impression 3D, CNC, bois et métal. L'art de fabriquer soi-même.</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 border border-slate-800 bg-[#111827] rounded-xl p-6 space-y-3 hover:border-purple-500/50 transition-colors flex flex-col justify-between">
+                    <div class="flex justify-between items-center">
+                        <i class="fa-solid fa-gears text-[#a855f7] text-lg"></i>
+                        <span class="text-[10px] px-2.5 py-1 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">Systems</span>
+                    </div>
+                    <div class="space-y-1">
+                        <h3 class="text-white font-bold text-sm text-matrix">Ingénierie</h3>
+                        <p class="text-slate-400 text-[11px]">Partage de connaissances théoriques et pratiques en mécanique et architecture système.</p>
+                    </div>
+                </div>
+
+                <div class="border border-slate-800 bg-[#111827] rounded-xl p-5 space-y-3 hover:border-cyan-500/50 transition-colors">
+                    <div class="flex justify-between items-center">
+                        <i class="fa-solid fa-microchip text-[#00e5ff] text-base"></i>
+                        <span class="text-[10px] px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Hardware</span>
+                    </div>
+                    <h3 class="text-white font-bold text-sm text-gradient-ocean">Électronique</h3>
+                    <p class="text-slate-400 text-[11px]">De la conception de circuits avancés à la programmation bas niveau de micro-contrôleurs.</p>
+                </div>
+
+                <div class="border border-slate-800 bg-[#111827] rounded-xl p-5 space-y-3 hover:border-amber-500/50 transition-colors">
+                    <div class="flex justify-between items-center">
+                        <i class="fa-solid fa-shield-halved text-amber-400 text-base"></i>
+                        <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Sec</span>
+                    </div>
+                    <h3 class="text-white font-bold text-sm text-gradient-amber">Cybersécurité</h3>
+                    <p class="text-slate-400 text-[11px]">CTF, rétro-ingénierie et sécurisation de systèmes.</p>
+                </div>
+
+                <div class="border border-slate-800 bg-[#111827] rounded-xl p-5 space-y-3 hover:border-purple-500/50 transition-colors">
+                    <div class="flex justify-between items-center">
+                        <i class="fa-solid fa-terminal text-[#a855f7] text-base"></i>
+                        <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">Code</span>
+                    </div>
+                    <h3 class="text-white font-bold text-sm text-gradient-purple">Informatique</h3>
+                    <p class="text-slate-400 text-[11px]">Systèmes d'exploitation, programmation système & scripts.</p>
+                </div>
+
+                <div class="border border-slate-800 bg-[#111827] rounded-xl p-5 space-y-3 hover:border-rose-500/50 transition-colors">
+                    <div class="flex justify-between items-center">
+                        <i class="fa-solid fa-users text-rose-400 text-base"></i>
+                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">Crew</span>
+                    </div>
+                    <h3 class="text-white font-bold text-sm text-gradient-rose">Rencontre</h3>
+                    <p class="text-slate-400 text-[11px]">Étudiants, passionnés et professionnels réunis.</p>
+                </div>
+
             </div>
 
+        <!-- NOUVEAU : Terminal Interactif (CLI) -->
+        <section id="terminal-section" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3 font-mono text-xs">
+                <div class="text-[#00e5ff] font-semibold">$ ./maker-cli --interactive</div>
+                <div class="text-slate-500">[Terminal Interactif]</div>
+            </div>
+
+            <div class="border border-cyan-500/30 bg-[#070b12] rounded-xl p-4 md:p-6 font-mono text-xs shadow-lg glow-cyan">
+                <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
+                    <div class="flex items-center space-x-2 text-slate-400 text-[11px]">
+                        <span class="text-cyan-400">maker-cli@v1.0.0</span>
+                        <span>- Type <strong class="text-[#00ff9d]">help</strong> pour commencer</span>
+                    </div>
+                    <div class="flex space-x-1.5">
+                        <div class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></div>
+                    </div>
+                </div>
+
+                <!-- Fenêtre du terminal -->
+                <div id="terminal-output" class="space-y-2 max-h-60 overflow-y-auto mb-3 text-slate-300 pr-2">
+                    <p class="text-slate-500">Bienvenue dans le shell interactif Maker Hub. Tapez vos commandes ci-dessous.</p>
+                    <p><span class="text-[#00ff9d]">system</span> > Prêt. Tapez <code class="text-cyan-400 bg-slate-800 px-1 py-0.5 rounded">help</code> pour voir la liste des commandes disponibles.</p>
+                </div>
+
+                <!-- Ligne de saisie -->
+                <form id="terminal-form" class="flex items-center space-x-2 pt-2 border-t border-slate-800">
+                    <span class="text-[#00ff9d] font-bold">visitor@maker-hub:$</span>
+                    <input type="text" id="terminal-input" autocomplete="off" autofocus placeholder="ex: help, discord, about..." class="bg-transparent border-none outline-none text-white w-full font-mono text-xs focus:ring-0">
+                </form>
+            </div>
+        </section>
+
+        <!-- Article & Projet -->
+        <section id="articles" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3 font-mono text-xs">
+                <div class="text-[#00e5ff] font-semibold">$ ls -la ./articles_et_projets</div>
+                <div class="text-slate-500">[Articles & Projets]</div>
+            </div>
+
+            <div class="space-y-4 font-mono text-xs">
+                
+                <a href="articles/mkhb.html" class="border border-slate-800 bg-[#111827] rounded-xl p-5 hover:border-cyan-500/50 transition-colors block group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-lg text-cyan-400 font-bold text-sm min-w-[70px] text-center">INFO</div>
+                        <div>
+                            <h3 class="text-white font-bold text-sm text-gradient-ocean">Maker Hub</h3>
+                            <p class="text-slate-400 text-[11px] mb-0">Découvrez qui nous sommes et notre philosophie</p>
+                        </div>
+                    </div>
+                    <span class="text-slate-500 group-hover:text-cyan-400 transition-colors flex items-center gap-1">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+
+                <a href="articles/ttl.html" class="border border-slate-800 bg-[#111827] rounded-xl p-5 hover:border-purple-500/50 transition-colors block group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="p-3 bg-purple-500/10 border border-purple-500/20 rounded-lg text-purple-400 font-bold text-sm min-w-[70px] text-center">NEW</div>
+                        <div>
+                            <h3 class="text-white font-bold text-sm text-gradient-purple">Introduction à la logique combinatoire</h3>
+                            <p class="text-slate-400 text-[11px] mb-0">Découvrez comment fonctionnent les circuits intégrés en plongeant dans la puce !</p>
+                        </div>
+                    </div>
+                    <span class="text-slate-500 group-hover:text-purple-400 transition-colors flex items-center gap-1">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+
+                <a href="articles/dac.html" class="border border-slate-800 bg-[#111827] rounded-xl p-5 hover:border-emerald-500/50 transition-colors block group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-[#00ff9d] font-bold text-sm min-w-[70px] text-center">TUTO</div>
+                        <div>
+                            <h3 class="text-white font-bold text-sm text-rainbow">Tutoriel DAC externe</h3>
+                            <p class="text-slate-400 text-[11px] mb-0">Apprenez à utiliser un DAC externe avec un microcontrôleur Arduino</p>
+                        </div>
+                    </div>
+                    <span class="text-slate-500 group-hover:text-[#00ff9d] transition-colors flex items-center gap-1">Lire le tuto <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Apprentissage -->
+        <section id="apprentissage" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3 font-mono text-xs">
+                <div class="text-[#a855f7] font-semibold">$ find ./formations -name "*.md" --sort=level</div>
+                <div class="text-slate-500">[Apprentissage]</div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
+                
+                <a href="formations/arduino-niv1.html" class="border border-slate-800 bg-[#111827] rounded-xl p-6 space-y-4 hover:border-cyan-500/50 transition-colors block group flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center text-cyan-400 text-[10px]">
+                            <span>[NIVEAU_01]</span>
+                            <i class="fa-solid fa-terminal"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-base text-gradient-ocean">Arduino - Niveau I</h3>
+                        <p class="text-slate-400 text-[11px]">Apprenez les bases indispensables de l'électronique programmée avec Arduino.</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 text-[11px] text-cyan-400 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                        <span>Explorer le module</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </div>
+                </a>
+
+                <a href="formations/arduino-niv2.html" class="border border-slate-800 bg-[#111827] rounded-xl p-6 space-y-4 hover:border-purple-500/50 transition-colors block group flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center text-purple-400 text-[10px]">
+                            <span>[NIVEAU_02]</span>
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-base text-gradient-purple">Arduino - Niveau II</h3>
+                        <p class="text-slate-400 text-[11px]">Perfectionnez votre code, gérez les interruptions et maîtrisez les capteurs complexes.</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 text-[11px] text-purple-400 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                        <span>Explorer le module</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </div>
+                </a>
+
+                <a href="formations/arduino-niv3.html" class="border border-slate-800 bg-[#111827] rounded-xl p-6 space-y-4 hover:border-emerald-500/50 transition-colors block group flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center text-[#00ff9d] text-[10px]">
+                            <span>[NIVEAU_03]</span>
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-base text-rainbow">Arduino - Niveau III</h3>
+                        <p class="text-slate-400 text-[11px]">Découvrez le monde des puces ARM haute performance et des architectures avancées.</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 text-[11px] text-[#00ff9d] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                        <span>Explorer le module</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Staff -->
+        <section id="staff" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3 font-mono text-xs">
+                <div class="text-[#a855f7] font-semibold">$ cat /etc/group | grep maker_staff</div>
+                <div class="text-slate-500">[L'Équipe]</div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
+                
+                <div class="border border-slate-800 bg-[#111827] rounded-xl p-6 space-y-4 relative overflow-hidden group hover:border-[#00ff9d]/50 transition-all">
+                    <div class="absolute top-0 right-0 px-3 py-1 bg-emerald-500/10 text-[#00ff9d] text-[9px] border-l border-b border-emerald-500/20 rounded-bl-lg">CORE</div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center text-xl border border-slate-700 shadow-inner">
+                            👨‍💻
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-sm">antoine8205</h3>
+                            <span class="text-slate-500 text-[10px]">UID: 1001</span>
+                        </div>
+                    </div>
+                    <div class="text-slate-300 text-[11px] space-y-1.5 pt-2 border-t border-slate-800/80">
+                        <p class="mb-0 flex items-center gap-2"><span class="text-[#00ff9d]">▪</span> Responsable Infrastructure</p>
+                        <p class="mb-0 flex items-center gap-2"><span class="text-[#00ff9d]">▪</span> Rédacteur</p>
+                    </div>
+                </div>
+
+                <div class="border border-slate-800 bg-[#111827] rounded-xl p-6 space-y-4 relative overflow-hidden group hover:border-cyan-500/50 transition-all">
+                    <div class="absolute top-0 right-0 px-3 py-1 bg-cyan-500/10 text-cyan-400 text-[9px] border-l border-b border-cyan-500/20 rounded-bl-lg">CREW</div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center text-xl border border-slate-700 shadow-inner">
+                            🛠️
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-sm">mixmix92</h3>
+                            <span class="text-slate-500 text-[10px]">UID: 1002</span>
+                        </div>
+                    </div>
+                    <div class="text-slate-300 text-[11px] space-y-1.5 pt-2 border-t border-slate-800/80">
+                        <p class="mb-0 flex items-center gap-2"><span class="text-cyan-400">▪</span> Rédacteur</p>
+                        <p class="mb-0 flex items-center gap-2"><span class="text-cyan-400">▪</span> Designer</p>
+                    </div>
+                </div>
+
+                <div class="border border-slate-800 bg-[#111827] rounded-xl p-6 space-y-4 relative overflow-hidden group hover:border-purple-500/50 transition-all border-dashed">
+                    <div class="absolute top-0 right-0 px-3 py-1 bg-purple-500/10 text-purple-400 text-[9px] border-l border-b border-purple-500/20 rounded-bl-lg">OPEN</div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-lg bg-slate-800/50 flex items-center justify-center text-xl border border-slate-700 shadow-inner">
+                            ⚙️
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-sm">Soon</h3>
+                            <span class="text-slate-500 text-[10px]">UID: XXXX</span>
+                        </div>
+                    </div>
+                    <div class="text-slate-300 text-[11px] space-y-1.5 pt-2 border-t border-slate-800/80">
+                        <p class="mb-0 flex items-center gap-2"><span class="text-purple-400">▪</span> Nous recrutons !</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-6 px-4 bg-[#111827]/90 text-xs font-mono text-slate-400 mt-16">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
+            <div class="flex items-center space-x-2">
+                <span class="text-[#00ff9d]">$</span>
+                <span>Maker Hub &copy; 2026 - Propulsé par la curiosité.</span>
+            </div>
+            <div class="text-[11px] text-slate-500">
+                Design Cyber Terminal - v2.2
+            </div>
         </div>
-    </section>
-
-    <!-- Staff -->
-
-    <section id="staff">
-        <h2>L'Équipe</h2>
-        <div class="grid">
-            <div class="card staff-card">
-                <div class="staff-avatar">👨‍💻</div>
-                <h4>antoine8205</h4>
-                <p>» Responsable Infrastructure</p>
-                <p>» Rédacteur</p>
-            </div>
-            <div class="card staff-card">
-                <div class="staff-avatar">🛠️</div>
-                <h4>mixmix92</h4>
-                <p>» Rédacteur</p>
-                <p>» Designer</p>
-            </div>
-            <div class="card staff-card">
-                <div class="staff-avatar">⚙️</div>
-                <h4>Soon</h4>
-                <p>» Nous recrutons !</p>
-
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>Maker Hub &copy; 2026 - Propulsé par la curiosité.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Scripts (Effet Typewriter + Terminal Interactif) -->
+    <script>
+        // Effet Typewriter sur le Hero
+        const words = ["$ entraide", "$ make all", "$ ./maker-hub.sh", "$ git commit -m 'Init Hub'", "$ open source spirit"];
+        let i = 0;
+        let timer;
+
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('typewriter').innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                    return false;
+                }
+                timer = setTimeout(loopTyping, 100);
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let word = words[i].split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    document.getElementById('typewriter').innerHTML = word.join("");
+                } else {
+                    if (words.length > (i + 1)) {
+                        i++;
+                    } else {
+                        i = 0;
+                    }
+                    setTimeout(typingEffect, 500);
+                    return false;
+                }
+                timer = setTimeout(loopDeleting, 50);
+            };
+            loopDeleting();
+        }
+        typingEffect();
+
+        // Terminal Interactif CLI
+        const terminalForm = document.getElementById('terminal-form');
+        const terminalInput = document.getElementById('terminal-input');
+        const terminalOutput = document.getElementById('terminal-output');
+
+        terminalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const cmd = terminalInput.value.trim().toLowerCase();
+            
+            // Afficher la commande entrée
+            const userMsg = document.createElement('p');
+            userMsg.innerHTML = `<span class="text-[#00ff9d]">visitor@maker-hub:$</span> <span class="text-white">${escapeHtml(terminalInput.value)}</span>`;
+            terminalOutput.appendChild(userMsg);
+
+            // Traitement des commandes
+            const responseMsg = document.createElement('p');
+            
+            switch(cmd) {
+                case 'help':
+                    responseMsg.innerHTML = `<span class="text-cyan-400">Commandes disponibles :</span><br>
+                    - <strong class="text-white">about</strong> : En savoir plus sur Maker Hub<br>
+                    - <strong class="text-white">discord</strong> : Obtenir le lien d'invitation Discord<br>
+                    - <strong class="text-white">staff</strong> : Afficher l'équipe du projet<br>
+                    - <strong class="text-white">clear</strong> : Nettoyer l'écran du terminal<br>
+                    - <strong class="text-white">date</strong> : Afficher l'horodatage système`;
+                    break;
+                case 'about':
+                    responseMsg.innerHTML = `MakerHub est la communauté dédiée à la Maker Culture, l'électronique avancée et l'ingénierie système.`;
+                    break;
+                case 'discord':
+                    responseMsg.innerHTML = `Lien d'invitation : <a href="https://discord.gg/QNEzFvfCaS" target="_blank" class="text-emerald-400 underline">https://discord.gg/QNEzFvfCaS</a>`;
+                    break;
+                case 'staff':
+                    responseMsg.innerHTML = `Core Team : antoine8205 (Admin/Infra), mixmix92 (Dev/Design).`;
+                    break;
+                case 'clear':
+                    terminalOutput.innerHTML = '';
+                    terminalInput.value = '';
+                    return;
+                case 'date':
+                    responseMsg.innerHTML = `Système actif - ${new Date().toLocaleString()}`;
+                    break;
+                case '':
+                    responseMsg.innerHTML = ``;
+                    break;
+                default:
+                    responseMsg.innerHTML = `<span class="text-rose-400">Commande inconnue :</span> '${escapeHtml(cmd)}'. Tapez <code class="text-cyan-400">help</code>.`;
+            }
+
+            if(cmd !== 'clear' && cmd !== '') {
+                terminalOutput.appendChild(responseMsg);
+            }
+
+            terminalInput.value = '';
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        });
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+    </script>
 </body>
 </html>
