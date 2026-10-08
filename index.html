@@ -233,7 +233,7 @@
 
             </div>
 
-        <!-- NOUVEAU : Terminal Interactif (CLI) -->
+        <!-- Terminal Interactif (CLI) -->
         <section id="terminal-section" class="space-y-6">
             <div class="flex items-center justify-between border-b border-slate-800 pb-3 font-mono text-xs">
                 <div class="text-[#00e5ff] font-semibold">$ ./maker-cli --interactive</div>
@@ -287,9 +287,22 @@
                     <span class="text-slate-500 group-hover:text-cyan-400 transition-colors flex items-center gap-1">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
                 </a>
 
+                <a href="articles/adc.html" class="border border-slate-800 bg-[#111827] rounded-xl p-5 hover:border-amber-500/50 transition-colors block group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="p-3 bg-amber-500/10 border border-amber-500/20 rounded-lg min-w-[70px] text-center">
+                            <span class="font-bold text-sm text-yellow-400">NEW</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">Tutoriel ADC sur PIC16F84A</h3>
+                            <p class="text-slate-400 text-[11px] mb-0">Découvrez comment numériser une tension à l'aide d'un convertisseur tension-fréquence et un PIC16F84A !</p>
+                        </div>
+                    </div>
+                    <span class="text-slate-500 group-hover:text-amber-400 transition-colors flex items-center gap-1">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+
                 <a href="articles/ttl.html" class="border border-slate-800 bg-[#111827] rounded-xl p-5 hover:border-purple-500/50 transition-colors block group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div class="flex items-center space-x-4">
-                        <div class="p-3 bg-purple-500/10 border border-purple-500/20 rounded-lg text-purple-400 font-bold text-sm min-w-[70px] text-center">NEW</div>
+                        <div class="p-3 bg-purple-500/10 border border-purple-500/20 rounded-lg text-purple-400 font-bold text-sm min-w-[70px] text-center">TUTO</div>
                         <div>
                             <h3 class="text-white font-bold text-sm text-gradient-purple">Introduction à la logique combinatoire</h3>
                             <p class="text-slate-400 text-[11px] mb-0">Découvrez comment fonctionnent les circuits intégrés en plongeant dans la puce !</p>
@@ -306,7 +319,7 @@
                             <p class="text-slate-400 text-[11px] mb-0">Apprenez à utiliser un DAC externe avec un microcontrôleur Arduino</p>
                         </div>
                     </div>
-                    <span class="text-slate-500 group-hover:text-[#00ff9d] transition-colors flex items-center gap-1">Lire le tuto <i class="fa-solid fa-arrow-right"></i></span>
+                    <span class="text-slate-500 group-hover:text-[#00ff9d] transition-colors flex items-center gap-1">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
                 </a>
 
             </div>
@@ -445,7 +458,6 @@
 
     <!-- Scripts (Effet Typewriter + Terminal Interactif) -->
     <script>
-        // Effet Typewriter sur le Hero
         const words = ["$ entraide", "$ make all", "$ ./maker-hub.sh", "$ git commit -m 'Init Hub'", "$ open source spirit"];
         let i = 0;
         let timer;
