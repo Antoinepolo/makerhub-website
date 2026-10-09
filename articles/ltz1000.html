@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutoriel ADC sur PIC16F84A | Maker Hub (Terminal)</title>
+    <title>Introduction à la LTZ1000 | Maker Hub (Terminal)</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -17,6 +17,7 @@
             --accent-blue: #58a6ff;
             --accent-orange: #f0883e;
             --accent-purple: #bc8cff;
+            --accent-red: #f85149;
         }
 
         * {
@@ -206,21 +207,6 @@
             border: 1px solid var(--border-color);
         }
 
-        /* Bloc de code du tutoriel */
-        .code-snippet {
-            background-color: #0d1117;
-            border: 1px solid var(--border-color);
-            color: #d4d4d4;
-            padding: 20px;
-            border-radius: 6px;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            overflow-x: auto;
-            margin: 20px 0;
-            line-height: 1.5;
-            white-space: pre;
-        }
-
         /* Boîte d'info style bloc de code / sortie */
         .info-box {
             background-color: #0d1117;
@@ -229,6 +215,44 @@
             padding: 20px;
             border-radius: 4px;
             margin: 20px 0;
+        }
+
+        /* Boîte GitHub dédiée */
+        .github-box {
+            background-color: #0d1117;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-green);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 25px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .github-box-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-green);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 0.85rem;
+            word-break: break-all;
+            transition: color 0.2s;
+        }
+
+        .github-link:hover {
+            text-decoration: underline;
+            color: #79c0ff;
         }
 
         /* Section d'autres articles */
@@ -317,19 +341,19 @@
                     <div class="btn-circle btn-minimize"></div>
                     <div class="btn-circle btn-maximize"></div>
                 </div>
-                <div class="terminal-title">bash - maker-hub@tuto-adc-pic16f84a:~</div>
+                <div class="terminal-title">bash - maker-hub@intro-ltz1000:~</div>
             </div>
 
             <div class="terminal-body">
                 <article>
                     <header>
-                        <span class="command-prompt">$ cat ./tutoriels/adc_pic16f84a.md</span>
-                        <h1 style="margin-top: 10px;">Tutoriel ADC sur PIC16F84A</h1>
+                        <span class="command-prompt">$ cat ./metrologie/ltz1000_intro.md</span>
+                        <h1 style="margin-top: 10px;">Introduction à la LTZ1000</h1>
                         
                         <div class="article-meta">
                             <span class="meta-item">
                                 <i data-lucide="calendar" size="14"></i> 
-                                2026-09-29
+                                2026-10-09
                             </span>
                             <span class="meta-item">
                                 <i data-lucide="user" size="14"></i> 
@@ -337,189 +361,41 @@
                             </span>
                             <span class="meta-item">
                                 <i data-lucide="clock" size="14"></i> 
-                                read_time: 8min
+                                read_time: 20min
                             </span>
                         </div>
                     </header>
 
                     <div class="article-content">
-                        <p>Le PIC16F84A ne possédant aucun ADC interne ni de protocole de communication série, nous allons utiliser un convertisseur tension-fréquence (AD650) et le compteur de la broche RA4/T0CKI du PIC16F84A afin de mesurer une tension entre 0 et 10V et de l'afficher sur un écran LCD. Le tout est écrit sur MPLAB X IDE et compilé avec XC8.</p>
+                        <p>La <strong>LTZ1000</strong> (et sa variante LTZ1000A) produite par Linear Technology (désormais Analog Devices) est considérée comme l'une des références de tension les plus stables et précises au monde. Elle sert d'étalon dans les multimètres de métrologie de classe 8½ digits, comme le célèbre Keysight 3458A.</p>
                         
-                        <img src="images/pic16f84a_adc.jpg" alt="photo_du_montage">
+                        <img src="images/ltz1000.jpg" alt="Vue intérieure de la LTZ1000">
 
-                        <h2>01. Le Matériel Utilisé</h2>
+                        <h2>01. Pourquoi est-elle si stable ?</h2>
+                        <p>Afin d'atteindre une dérive en température extrêmement faible (&lt; 0.05 ppm/°C) et un bruit ultra-bas, la LTZ1000 intègre directement sur le substrat de silicium :</p>
                         <ul>
-                            <li>Microcontrôleur Microchip PIC16F84A</li>
-                            <li>Convertisseur Tension-Fréquence AD650</li>
-                            <li>Résistances et Condensateurs</li>
-                            <li>Écran LCD 1602 (Mode 4 bits)</li>
-                            <li>Quartz 8 MHz et condensateurs associés</li>
-                            <li>Fils de connexion et plaque de prototypage</li>
-                            <li>Quelques autres composants pour le découplage et la régulation.</li>
+                                <li><strong>Une Zener enterrée sous la surface :</strong> Évite les bruits d'interface et d'impuretés de la surface du silicium.</li>
+                                <li><strong>Un transistor de régulation du courant :</strong> Permet d'asservir et de maintenir un courant d'avalanche constant à travers la Zener.</li>
+                                <li><strong>Un élément chauffant & un transistor capteur de température :</strong> Permettent d'asservir la puce à une température constante supérieure à la température ambiante (souvent ~50°C à 65°C) à l'aide d'une boucle de contrôle externe.</li>
+                                <li><strong>Une isolation thermique intégrée (sur la version LTZ1000A) :</strong> Réduit l'influence des courants d'air et de la température ambiante.</li>
                         </ul>
 
-                        <h2>02. Programme C (XC8 / MPLAB X)</h2>
-                        <div class="code-snippet">/*
- * File:   main.c
- * Author: Antoine Polo
- *
- * Created on September 29, 2026, 10:32 PM
- */
-
-#pragma config FOSC = HS        // Oscillator Selection bits (HS oscillator)
-#pragma config WDTE = OFF       // Watchdog Timer disabled
-#pragma config PWRTE = OFF      // Power-up Timer disabled
-#pragma config CP = OFF         // Code protection disabled
-
-#include &lt;xc.h&gt;
-
-#define _XTAL_FREQ 8000000
-
-#define RS RB0
-#define EN RB1
-#define D4 RB4
-#define D5 RB5
-#define D6 RB6
-#define D7 RB7
-
-void lcd_port(char a);
-void lcd_cmd(char a);
-void lcd_clear(void);
-void lcd_set_cursor(char a, char b);
-void lcd_init(void);
-void lcd_write_char(char a);
-void lcd_write_string(const char *a);
-void lcd_write_int(unsigned int val, unsigned char digits);
-
-static unsigned int freq = 0;
-static unsigned int tension_mv = 0;
-
-void main(void) {
-    TRISB = 0x00;
-    TRISA = 0b00010000;
-
-    OPTION_REG = 0b00101000;
-
-    lcd_init();
-    lcd_clear();
-
-    while(1) {
-        TMR0 = 0;
-
-        // Le compteur n'étant que de 8 bits, nous sommes obligés d'échantillonner sur 500 ms, sinon il déborde, puis de multiplier la fréquence par deux pour obtenir l'échantillonnage sur une seconde.
-        // On pourrait également assigner le prescaler au Timer0 (1:2) et ainsi échantillonner sur une seconde.
-        __delay_ms(500);
-        freq = (unsigned int)TMR0 * 2;
-
-        // Conversion de la tension en fréquence (1Hz = 28mV)
-        tension_mv = freq * 28;
-
-        lcd_set_cursor(1, 1);
-        lcd_write_string("Freq: ");
-        lcd_write_int(freq, 3);
-        lcd_write_string(" Hz   ");
-
-        lcd_set_cursor(2, 1);
-        lcd_write_string("Volt: ");
-        lcd_write_int(tension_mv / 1000, 2);
-        lcd_write_char('.');
-        lcd_write_int((tension_mv % 1000) / 10, 2);
-        lcd_write_string(" V   ");
-    }
-}
-
-void lcd_write_int(unsigned int val, unsigned char digits) {
-    static char buf[5];
-    static unsigned char i;
-
-    for (i = 0; i &lt; digits; i++) {
-        buf[i] = (char)((val % 10) + '0');
-        val /= 10;
-    }
-
-    while (i &gt; 0) {
-        i--;
-        lcd_write_char(buf[i]);
-    }
-}
-
-void lcd_port(char a) {
-    D4 = (a &amp; 1) ? 1 : 0;
-    D5 = (a &amp; 2) ? 1 : 0;
-    D6 = (a &amp; 4) ? 1 : 0;
-    D7 = (a &amp; 8) ? 1 : 0;
-}
-
-void lcd_cmd(char a) {
-    RS = 0;
-    lcd_port(a);
-    EN = 1;
-    __delay_ms(4);
-    EN = 0;
-}
-
-void lcd_clear(void) {
-    lcd_cmd(0);
-    lcd_cmd(1);
-}
-
-void lcd_set_cursor(char a, char b) {
-    char temp, z, y;
-    if(a == 1) {
-        temp = 0x80 + b - 1;
-        z = temp &gt;&gt; 4;
-        y = temp &amp; 0x0F;
-        lcd_cmd(z);
-        lcd_cmd(y);
-    } else if(a == 2) {
-        temp = 0xC0 + b - 1;
-        z = temp &gt;&gt; 4;
-        y = temp &amp; 0x0F;
-        lcd_cmd(z);
-        lcd_cmd(y);
-    }
-}
-
-void lcd_init(void) {
-    lcd_port(0x00);
-    __delay_ms(20);
-    lcd_cmd(0x03);
-    __delay_ms(5);
-    lcd_cmd(0x03);
-    __delay_ms(11);
-    lcd_cmd(0x03);
-    lcd_cmd(0x02);
-    lcd_cmd(0x02);
-    lcd_cmd(0x08);
-    lcd_cmd(0x00);
-    lcd_cmd(0x0C);
-    lcd_cmd(0x00);
-    lcd_cmd(0x06);
-}
-
-void lcd_write_char(char a) {
-    char temp, y;
-    temp = a &amp; 0x0F;
-    y = a &amp; 0xF0;
-    RS = 1;
-    lcd_port(y &gt;&gt; 4);
-    EN = 1;
-    __delay_us(40);
-    EN = 0;
-    lcd_port(temp);
-    EN = 1;
-    __delay_us(40);
-    EN = 0;
-}
-
-void lcd_write_string(const char *a) {
-    for(unsigned char i = 0; a[i] != '\0'; i++)
-        lcd_write_char(a[i]);
-}</div>
+                        <h2>02. Documentation PDF complémentaire</h2>
+                        <div class="github-box">
+                            <div class="github-box-header">
+                                <i data-lucide="github" size="18"></i>
+                                <span>Ressource GitHub / Document d'étude</span>
+                            </div>
+                            <p style="font-size: 0.85rem; margin-bottom: 5px;">Vous pouvez consulter le document complet en métrologie analogique sur notre dépôt GitHub :</p>
+                            <a href="https://github.com/Antoinepolo/makerhub-docs/blob/main/Maker%20Hub%20Lab/%C3%89lectronique%20Analogique/Introduction%20a%CC%80%20la%20LTZ1000.pdf" target="_blank" rel="noopener noreferrer" class="github-link">
+                                <i data-lucide="file-text" size="16"></i>
+                                <span>Introduction à la LTZ1000.pdf (Maker Hub Lab)</span>
+                            </a>
+                        </div>
 
                         <div class="info-box">
-                            <h2 style="margin-top: 0; border: none; padding: 0; font-size: 1.1rem; color: var(--accent-blue);">Principe de mesure</h2>
-                            <p style="margin-bottom: 0;">L'échantillonnage de 500 ms permet d'éviter le dépassement de la capacité du registre 8 bits de Timer0 (TMR0). La fréquence finale comptée est multipliée par un facteur d'échelle correspondant à la calibration de l'AD650 (1 Hz = 28 mV).</p>
+                            <h2 style="margin-top: 0; border: none; padding: 0; font-size: 1.1rem; color: var(--accent-blue);">Point Clé en Métrologie</h2>
+                            <p style="margin-bottom: 0;">Même avec une référence aussi parfaite que la LTZ1000, la stabilité finale dépend à 90% du choix des résistances d'asservissement (type Vishay Foil ou Wirewound à très faible coefficient de température) et du soin apporté au tracé du PCB.</p>
                         </div>
                     </div>
                 </article>
@@ -528,10 +404,10 @@ void lcd_write_string(const char *a) {
                     <h3>// Autres fichiers suggérés</h3>
                     <div class="grid">
                         <div class="card">
-                            <a href="mkhb.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
-                            <small>INFO</small>
-                            <h3>Qui sommes nous</h3>
-                            <p>Découvrez qui nous sommes.</p>
+                            <a href="adc.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
+                            <small>TUTORIEL</small>
+                            <h3>Tutorial ADC sur PIC16F84A</h3>
+                            <p>Découvrez comment numériser une tension à l'aide d'un convertisseur tension-fréquence et un PIC16F84A !</p>
                         </div>
                         <div class="card">
                             <a href="ttl.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
