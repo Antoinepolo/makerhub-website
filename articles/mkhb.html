@@ -1,403 +1,160 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-accent="green">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qui sommes nous | Maker Hub (Terminal)</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0d1117;
-            --terminal-bg: #161b22;
-            --border-color: #30363d;
-            --text-main: #c9d1d9;
-            --text-muted: #8b949e;
-            --accent-green: #2ea043;
-            --accent-blue: #58a6ff;
-            --accent-orange: #f0883e;
-            --accent-purple: #bc8cff;
+    <title>Qui sommes-nous | Maker Hub</title>
+    <meta name="description" content="Maker Hub, un projet créé et géré par des étudiants pour discuter, s&#x27;informer et apprendre autour des nouvelles technologies. Rencontrez l&#x27;équipe.">
+    <meta name="author" content="antoine8205">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0e17">
+    <meta name="color-scheme" content="dark">
+    <!-- TODO : remplacer https://VOTRE-DOMAINE/ -->
+    <link rel="canonical" href="https://VOTRE-DOMAINE/articles/mkhb.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Maker Hub">
+    <meta property="og:locale" content="fr_BE">
+    <meta property="og:title" content="Qui sommes-nous | Maker Hub">
+    <meta property="og:description" content="Maker Hub, un projet créé et géré par des étudiants pour discuter, s&#x27;informer et apprendre autour des nouvelles technologies. Rencontrez l&#x27;équipe.">
+    <meta property="og:url" content="https://VOTRE-DOMAINE/articles/mkhb.html">
+    <meta property="og:image" content="https://VOTRE-DOMAINE/images/logo.png">
+    <meta property="article:published_time" content="2026-07-20">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Qui sommes-nous",
+    "description": "Maker Hub, un projet créé et géré par des étudiants pour discuter, s'informer et apprendre autour des nouvelles technologies. Rencontrez l'équipe.",
+    "datePublished": "2026-07-20",
+    "inLanguage": "fr",
+    "author": {
+        "@type": "Person",
+        "name": "antoine8205"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Maker Hub",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://VOTRE-DOMAINE/images/logo.png"
         }
+    },
+    "mainEntityOfPage": "https://VOTRE-DOMAINE/articles/mkhb.html"
+}
+    </script>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Fira Code', monospace;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            line-height: 1.6;
-        }
-
-        /* Barre de navigation style CLI */
-        nav {
-            background-color: var(--terminal-bg);
-            border-bottom: 1px solid var(--border-color);
-            padding: 12px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 700;
-        }
-
-        .logo-img {
-            width: 24px;
-            height: 24px;
-            border-radius: 6px;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-blue);
-        }
-
-        /* Conteneur principal style fenêtre de terminal */
-        .article-container {
-            flex: 1;
-            max-width: 900px;
-            width: 100%;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .terminal-window {
-            background-color: var(--terminal-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
-            overflow: hidden;
-            margin-bottom: 40px;
-        }
-
-        .terminal-header {
-            background-color: #21262d;
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .terminal-buttons {
-            display: flex;
-            gap: 8px;
-        }
-
-        .btn-circle {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .btn-close { background-color: #ff5f56; }
-        .btn-minimize { background-color: #ffbd2e; }
-        .btn-maximize { background-color: #27c93f; }
-
-        .terminal-title {
-            margin-left: 15px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .terminal-body {
-            padding: 30px;
-        }
-
-        /* Fil d'ariane / Commande de retour */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--accent-blue);
-            text-decoration: none;
-            margin-bottom: 25px;
-            font-size: 0.9rem;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Méta-informations de l'article */
-        .command-prompt {
-            color: var(--accent-green);
-            font-weight: 500;
-        }
-
-        .article-meta {
-            color: var(--text-muted);
-            margin: 15px 0 25px 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            font-size: 0.85rem;
-            border-bottom: 1px dashed var(--border-color);
-            padding-bottom: 15px;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        h1 {
-            color: var(--text-main);
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
-
-        /* Contenu du texte */
-        .article-content h2 {
-            color: var(--accent-purple);
-            font-size: 1.4rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            border-left: 3px solid var(--accent-purple);
-            padding-left: 10px;
-        }
-
-        .article-content p {
-            margin-bottom: 1.2rem;
-            color: var(--text-main);
-            font-size: 0.95rem;
-        }
-
-        /* Boîte d'info style bloc de code / sortie */
-        .info-box {
-            background-color: #0d1117;
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent-blue);
-            padding: 20px;
-            border-radius: 4px;
-            margin: 20px 0;
-        }
-
-        /* Cartes profils style blocs de données / structs */
-        .profile-card {
-            background-color: #0d1117;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 20px;
-            margin: 20px 0;
-            position: relative;
-        }
-
-        .profile-card.antoine {
-            border-left: 4px solid #58a6ff;
-        }
-
-        .profile-card.mixmix {
-            border-left: 4px solid #f0883e;
-        }
-
-        .profile-card span {
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 0.5px;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        .profile-card.antoine span { color: var(--accent-blue); }
-        .profile-card.mixmix span { color: var(--accent-orange); }
-
-        .profile-card p {
-            font-style: italic;
-            color: var(--text-muted);
-            margin-bottom: 0;
-        }
-
-        /* Section d'autres articles (style liste de fichiers/commandes) */
-        .suggestions-section {
-            margin-top: 40px;
-            border-top: 1px dashed var(--border-color);
-            padding-top: 30px;
-        }
-
-        .suggestions-section h3 {
-            color: var(--accent-green);
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background-color: #0d1117;
-            border: 1px solid var(--border-color);
-            padding: 15px;
-            border-radius: 6px;
-            transition: border-color 0.2s;
-            position: relative;
-        }
-
-        .card:hover {
-            border-color: var(--accent-blue);
-        }
-
-        .card small {
-            color: var(--accent-orange);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-        }
-
-        .card h3 {
-            font-size: 1rem;
-            margin: 8px 0;
-            color: var(--text-main);
-        }
-
-        .card p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: var(--terminal-bg);
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/maker-os.css">
 </head>
-<body>
+<body data-page="article" data-root="../" data-file="articles/mkhb.md">
+    <a href="#main" class="skip-link">Aller au contenu</a>
 
-    <nav>
-        <a href="../index.html" class="logo-container">
-            <img src="../images/logo.png" alt="Logo" class="logo-img">
-            <span>~/maker-hub</span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="../index.html#presentation">./concept</a></li>
-            <li><a href="../index.html#articles">./blog</a></li>
-            <li><a href="../index.html#apprentissage">./formation</a></li>
-            <li><a href="../index.html#staff">./staff</a></li>
-        </ul>
-    </nav>
-
-    <main class="article-container">
-        <a href="../index.html#articles" class="back-link">
-            <i data-lucide="arrow-left" size="16"></i> cd .. / retour_articles
-        </a>
-
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-buttons">
-                    <div class="btn-circle btn-close"></div>
-                    <div class="btn-circle btn-minimize"></div>
-                    <div class="btn-circle btn-maximize"></div>
-                </div>
-                <div class="terminal-title">bash - maker-hub@about-us:~</div>
-            </div>
-
-            <div class="terminal-body">
-                <article>
-                    <header>
-                        <span class="command-prompt">$ cat ./infos/qui_sommes_nous.md</span>
-                        <h1 style="margin-top: 10px;">Qui sommes-nous</h1>
-                        
-                        <div class="article-meta">
-                            <span class="meta-item">
-                                <i data-lucide="calendar" size="14"></i> 
-                                2026-07-20
-                            </span>
-                            <span class="meta-item">
-                                <i data-lucide="user" size="14"></i> 
-                                author: antoine8205
-                            </span>
-                            <span class="meta-item">
-                                <i data-lucide="clock" size="14"></i> 
-                                read_time: 5min
-                            </span>
-                        </div>
-                    </header>
-
-                    <div class="article-content">
-                        <h2>01. Le projet</h2>
-                        
-                        <div class="info-box">
-                            <p style="margin-bottom: 0;">
-                                <strong style="color: var(--accent-blue);">Maker Hub</strong> est un projet <strong>créé et géré</strong> par des étudiants, permettant de discuter, s'informer et apprendre dans divers domaines liés aux nouvelles technologies. Peu importe votre niveau, vous êtes les bienvenus et vous trouverez toujours quelque chose à faire ou des gens avec qui discuter !
-                            </p>
-                        </div>
-
-                        <h2>02. L'équipe</h2>
-
-                        <div class="profile-card antoine">
-                            <span>> Antoine</span>
-                            <p>
-                                "Passionné d'électronique et d'informatique, j'ai créé cet espace pour partager et discuter autour de ces sujets. Du homelab à la cybersécurité que j'étudie actuellement à Namur, je cultive une curiosité pour les nouvelles technologies."
-                            </p>
-                        </div>
-
-                        <div class="profile-card mixmix">
-                            <span>> mixmix92</span>
-                            <p>
-                                "Étudiant en génie industriel, je suis passionné par l'impression 3D, la modélisation et la réalisation de projets en général. La concrétisation de ces derniers me permet d'acquérir un large panel de compétences, avec pour objectif de ne devenir expert en rien, mais d'être bon en tout."
-                            </p>
-                        </div>
-                    </div>
-                </article>
-
-                <div class="suggestions-section">
-                    <h3>// Autres fichiers suggérés</h3>
-                    <div class="grid">
-                        <div class="card">
-                            <a href="dac.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
-                            <small>TUTO</small>
-                            <h3>Tutoriel DAC Externe</h3>
-                            <p>Apprenez à utiliser un DAC externe avec un Arduino</p>
-                        </div>
-                        <div class="card">
-                            <a href="ttl.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
-                            <small>NOUVEAU</small>
-                            <h3>Introduction à la logique combinatoire</h3>
-                            <p>Découvrez comment fonctionnent les circuits intégrés en plongeant dans la puce !</p>
-                        </div>
-                    </div>
-                </div>
+    <header class="topbar">
+        <div class="wrap">
+            <a href="../index.html" class="brand" aria-label="Maker Hub — accueil">
+                <img src="../images/logo.png" alt="" width="30" height="30">
+                <span>MAKER HUB <span class="ver">v3.0</span></span>
+            </a>
+            <nav class="tabs" aria-label="Navigation principale">
+                <a href="../index.html"><span class="n">0:</span>accueil</a>
+                <a href="../index.html#projet"><span class="n">1:</span>projet</a>
+                <a href="../articles.html" aria-current="page"><span class="n">2:</span>articles</a>
+                <a href="../index.html#formations"><span class="n">3:</span>formations</a>
+                <a href="../index.html#equipe"><span class="n">4:</span>équipe</a>
+                <a href="../index.html#faq"><span class="n">5:</span>faq</a>
+                <a href="../index.html#contact"><span class="n">6:</span>contact</a>
+            </nav>
+            <div class="top-actions">
+                <span class="online"><span class="dot" aria-hidden="true"></span>status: online</span>
+                <button type="button" class="k-btn" data-open-palette aria-haspopup="dialog" aria-label="Ouvrir la navigation rapide (Ctrl+K)">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span class="hide-sm">Aller à…</span> <kbd>Ctrl K</kbd>
+                </button>
             </div>
         </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+        <span id="top"></span>
+        <div class="art">
+            <article>
+                <header class="art-head" data-section="articles/mkhb.md">
+                    <p class="crumbs"><a href="../index.html">~</a> / <a href="../articles.html">articles</a> / mkhb</p>
+                    <p class="cmd">$ <b>cat ./infos/qui_sommes_nous.md</b></p>
+                    <h1>Qui sommes-nous</h1>
+                    <div class="art-meta">
+                        <span class="type info">INFO</span>
+                        <span><i class="fa-regular fa-calendar" aria-hidden="true"></i><time datetime="2026-07-20">20 juillet 2026</time></span>
+                        <span><i class="fa-regular fa-user" aria-hidden="true"></i>antoine8205</span>
+                        <span><i class="fa-regular fa-clock" aria-hidden="true"></i>5 min de lecture</span>
+                    </div>
+                </header>
+
+                <div class="prose">
+<h2>Le projet</h2>
+<div class="callout">
+    <p><strong>Maker Hub</strong> est un projet <strong>créé et géré</strong> par des étudiants, permettant de discuter, s'informer et apprendre dans divers domaines liés aux nouvelles technologies. Peu importe votre niveau, vous êtes les bienvenus et vous trouverez toujours quelque chose à faire ou des gens avec qui discuter !</p>
+</div>
+
+<h2>L'équipe</h2>
+<div class="person" style="--c: 0, 229, 255">
+    <div class="avatar" aria-hidden="true">A</div>
+    <div>
+        <span class="pn">Antoine</span>
+        <blockquote>« Passionné d'électronique et d'informatique, j'ai créé cet espace pour partager et discuter autour de ces sujets. Du homelab à la cybersécurité que j'étudie actuellement à Namur, je cultive une curiosité pour les nouvelles technologies. »</blockquote>
+    </div>
+</div>
+<div class="person" style="--c: 245, 158, 11">
+    <div class="avatar" aria-hidden="true">M</div>
+    <div>
+        <span class="pn">mixmix92</span>
+        <blockquote>« Étudiant en génie industriel, je suis passionné par l'impression 3D, la modélisation et la réalisation de projets en général. La concrétisation de ces derniers me permet d'acquérir un large panel de compétences, avec pour objectif de ne devenir expert en rien, mais d'être bon en tout. »</blockquote>
+    </div>
+</div>
+
+<div class="callout tip">
+    <p class="ct"><i class="fa-brands fa-discord" aria-hidden="true"></i> Envie de nous rejoindre ?</p>
+    <p>Passe dire bonjour sur le <a href="https://discord.gg/QNEzFvfCaS" target="_blank" rel="noopener noreferrer">serveur Discord</a> : on recrute rédacteurs, designers et makers de tous horizons.</p>
+</div>
+                </div>
+
+                <div class="art-end">
+                    <a class="btn btn-ghost" href="../articles.html" data-back><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> cd ..</a>
+                    <span class="by">écrit par <b>antoine8205</b> · une remarque ? <a href="https://discord.gg/QNEzFvfCaS" target="_blank" rel="noopener noreferrer" style="color:var(--cyan)">Discord</a></span>
+                </div>
+            </article>
+
+            <aside class="toc" aria-label="Sommaire">
+                <p>// sommaire</p>
+                <ol id="toc"></ol>
+                <div class="toc-actions">
+                    <button type="button" data-copy-link><i class="fa-solid fa-link" aria-hidden="true"></i> copier le lien</button>
+                    <a href="#top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i> haut de page</a>
+                </div>
+            </aside>
+        </div>
+
+        <section class="wrap art-more" aria-labelledby="more-title" style="max-width:1120px">
+            <h2 id="more-title">$ <b>ls</b> ../articles | grep -v mkhb | head -3</h2>
+            <div class="ls">
+                <ul data-articles data-limit="3" data-exclude="articles/mkhb.html"></ul>
+                <a class="ls-more" href="../articles.html">$ ls ../articles --all <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>maker-hub &copy; 2026 // root access granted.</p>
+    <footer data-footer>
+        <!-- Contenu généré par assets/maker-os.js (une seule source pour tout le site). Liens de secours sans JavaScript : -->
+        <div class="wrap" style="text-align:center">
+            <a href="../mentions-legales.html">Mentions légales</a> · <a href="../confidentialite.html">Confidentialité</a> · <a href="../conditions.html">Conditions d'utilisation</a> · <a href="../accessibilite.html">Accessibilité</a>
+        </div>
     </footer>
 
-    <script>
-        lucide.createIcons();
-    </script>
+    <script src="../assets/data.js"></script>
+    <script src="../assets/maker-os.js"></script>
 </body>
 </html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr" data-accent="green">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibilité | Maker Hub</title>
+    <meta name="description" content="Engagement d&#x27;accessibilité de Maker Hub : ce qui est déjà en place, les limites connues et comment nous signaler un problème.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0e17">
+    <meta name="color-scheme" content="dark">
+    <!-- TODO : remplacer https://VOTRE-DOMAINE/ -->
+    <link rel="canonical" href="https://VOTRE-DOMAINE/accessibilite.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Maker Hub">
+    <meta property="og:locale" content="fr_BE">
+    <meta property="og:title" content="Accessibilité | Maker Hub">
+    <meta property="og:description" content="Engagement d&#x27;accessibilité de Maker Hub : ce qui est déjà en place, les limites connues et comment nous signaler un problème.">
+    <meta property="og:url" content="https://VOTRE-DOMAINE/accessibilite.html">
+    <meta property="og:image" content="https://VOTRE-DOMAINE/images/logo.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Accessibilité",
+    "description": "Engagement d'accessibilité de Maker Hub : ce qui est déjà en place, les limites connues et comment nous signaler un problème.",
+    "inLanguage": "fr",
+    "dateModified": "2026-10-10",
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "Maker Hub"
+    }
+}
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/maker-os.css">
+</head>
+<body data-page="doc" data-root="" data-file="legal/accessibilite.txt">
+    <a href="#main" class="skip-link">Aller au contenu</a>
+
+    <header class="topbar">
+        <div class="wrap">
+            <a href="index.html" class="brand" aria-label="Maker Hub — accueil">
+                <img src="images/logo.png" alt="" width="30" height="30">
+                <span>MAKER HUB <span class="ver">v3.0</span></span>
+            </a>
+            <nav class="tabs" aria-label="Navigation principale">
+                <a href="index.html"><span class="n">0:</span>accueil</a>
+                <a href="index.html#projet"><span class="n">1:</span>projet</a>
+                <a href="articles.html"><span class="n">2:</span>articles</a>
+                <a href="index.html#formations"><span class="n">3:</span>formations</a>
+                <a href="index.html#equipe"><span class="n">4:</span>équipe</a>
+                <a href="index.html#faq"><span class="n">5:</span>faq</a>
+                <a href="index.html#contact"><span class="n">6:</span>contact</a>
+            </nav>
+            <div class="top-actions">
+                <span class="online"><span class="dot" aria-hidden="true"></span>status: online</span>
+                <button type="button" class="k-btn" data-open-palette aria-haspopup="dialog" aria-label="Ouvrir la navigation rapide (Ctrl+K)">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span class="hide-sm">Aller à…</span> <kbd>Ctrl K</kbd>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+        <span id="top"></span>
+        <div class="art">
+            <article>
+                <header class="art-head" data-section="legal/accessibilite.txt">
+                    <p class="crumbs"><a href="index.html">~</a> / legal / accessibilite</p>
+                    <p class="cmd">$ <b>cat ./legal/accessibilite.txt</b></p>
+                    <h1>Accessibilité</h1>
+                    <div class="art-meta">
+                        <span><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>legal</span>
+                        <span><i class="fa-regular fa-calendar" aria-hidden="true"></i>mise à jour : <time datetime="2026-10-10">10 octobre 2026</time></span>
+                    </div>
+                </header>
+
+                <div class="prose">
+<p>Maker Hub veut être lisible et utilisable par tout le monde, quels que soient le matériel, le handicap ou la façon de naviguer. Ce site n'est pas soumis à une obligation légale d'accessibilité ; cette page décrit un <strong>engagement volontaire</strong>, sur la base des recommandations WCAG.</p>
+
+<h2>Ce qui est en place</h2>
+<ul class="checks">
+    <li>Navigation complète au clavier, avec un indicateur de focus visible et un lien « Aller au contenu » en début de page.</li>
+    <li>Structure de titres cohérente et zones de page identifiées (en-tête, navigation, contenu, pied de page) pour les lecteurs d'écran.</li>
+    <li>Textes alternatifs sur les images de contenu ; éléments purement décoratifs (logo ASCII, effets) masqués aux technologies d'assistance.</li>
+    <li>Respect du réglage « réduire les animations » du système : écran de démarrage, effets et défilements animés sont alors désactivés.</li>
+    <li>Contrastes de texte élevés sur fond sombre et mise en page adaptée aux mobiles et au zoom.</li>
+    <li>Site entièrement lisible sans JavaScript (seuls le terminal et les animations nécessitent JavaScript).</li>
+</ul>
+
+<h2>Limites connues</h2>
+<ul>
+    <li>Le site n'existe qu'en thème sombre.</li>
+    <li>Le terminal interactif de l'accueil est une fonctionnalité ludique : tout ce qu'il permet de faire reste accessible par les liens classiques du site.</li>
+    <li>Certains documents liés (PDF sur GitHub) peuvent ne pas être pleinement accessibles.</li>
+    <li>Aucun audit externe n'a encore été réalisé.</li>
+</ul>
+
+<h2>Signaler un problème</h2>
+<p>Un contenu inaccessible, une difficulté de navigation ? Écrivez-nous à <a href="mailto:administration.makerhub@gmail.com">administration.makerhub@gmail.com</a> ou sur Discord en décrivant la page et le problème rencontré. Nous ferons au mieux pour le corriger ou vous fournir le contenu sous une autre forme.</p>
+                </div>
+
+                <div class="art-end">
+                    <a class="btn btn-ghost" href="index.html" data-back><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> cd ..</a>
+                    <span class="by">voir aussi : <a href="mentions-legales.html" style="color:var(--cyan)">Mentions légales</a> · <a href="confidentialite.html" style="color:var(--cyan)">Politique de confidentialité</a> · <a href="conditions.html" style="color:var(--cyan)">Conditions d'utilisation</a></span>
+                </div>
+            </article>
+
+            <aside class="toc" aria-label="Sommaire">
+                <p>// sommaire</p>
+                <ol id="toc"></ol>
+                <div class="toc-actions">
+                    <button type="button" data-copy-link><i class="fa-solid fa-link" aria-hidden="true"></i> copier le lien</button>
+                    <a href="#top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i> haut de page</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer data-footer>
+        <!-- Contenu généré par assets/maker-os.js (une seule source pour tout le site). Liens de secours sans JavaScript : -->
+        <div class="wrap" style="text-align:center">
+            <a href="mentions-legales.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a> · <a href="conditions.html">Conditions d'utilisation</a> · <a href="accessibilite.html">Accessibilité</a>
+        </div>
+    </footer>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/maker-os.js"></script>
+</body>
+</html>
