@@ -265,10 +265,10 @@ $$('footer[data-footer]').forEach(f => {
             <div>
                 <h2>valeurs</h2>
                 <ul class="values">
-                    <li><b>Entraide</b> On apprend ensemble, sans jugement</li>
-                    <li><b>Accessible</b> Des explications claires, quel que soit le niveau</li>
-                    <li><b>Ouvert</b> Contenus gratuits, doc libre sur GitHub</li>
-                    <li><b>Curiosité</b> Aller plus loin que les tutos habituels</li>
+                    <li><b>Entraide</b> on apprend ensemble, sans jugement</li>
+                    <li><b>Accessible</b> des explications claires, quel que soit le niveau</li>
+                    <li><b>Ouvert</b> contenus gratuits, doc libre sur GitHub</li>
+                    <li><b>Curiosité</b> aller plus loin que les tutos habituels</li>
                 </ul>
             </div>
             <nav aria-label="Informations légales">
