@@ -145,7 +145,8 @@
     .track-head .meta::before { content: "// "; }
     .track-head .count { margin-left: auto; font-size: 11px; color: rgb(var(--c)); border: 1px solid rgba(var(--c), .3); border-radius: 999px; padding: 2px 10px; }
 
-    .pipeline { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    /* Nombre de niveaux : style="--cols: 2" sur le <ol class="pipeline"> (3 par défaut) */
+    .pipeline { position: relative; display: grid; grid-template-columns: repeat(var(--cols, 3), 1fr); gap: 22px; }
     .pipeline::before {
         content: ""; position: absolute; left: 6%; right: 6%; top: 34px; height: 2px;
         background: linear-gradient(90deg, var(--cyan), var(--purple), var(--neon)); opacity: .35;
@@ -173,6 +174,11 @@
         .stage .card { height: auto; }
         .track { padding: 18px; }
     }
+    /* Niveau pas encore disponible */
+    .stage.soon .node { border-style: dashed; border-color: var(--line); color: var(--dim); box-shadow: 0 0 0 6px var(--bg); }
+    .stage.soon .card { border-style: dashed; background: transparent; }
+    .stage.soon .card:hover { transform: none; border-color: var(--line); }
+    .stage.soon .job, .stage.soon .run { color: var(--dim); }
     .track.soon { border-style: dashed; background: transparent; }
     .track.soon .track-head { margin-bottom: 10px; }
     .track.soon p { font-family: var(--sans); color: var(--muted); font-size: 14px; }
@@ -438,10 +444,41 @@
                     </ol>
                 </div>
 
+                <!-- Piste : PIC -->
+                <div class="track reveal" style="--c: 245,158,11" aria-labelledby="track-pic">
+                    <div class="track-head">
+                        <span class="ic" aria-hidden="true"><i class="fa-solid fa-memory"></i></span>
+                        <h3 id="track-pic">Microcontrôleurs PIC</h3>
+                        <span class="meta">le PIC16F84A, registre par registre</span>
+                        <span class="count">1 niveau · d'autres à venir</span>
+                    </div>
+                    <ol class="pipeline" style="--cols: 2">
+                        <li class="stage" style="--c: 245,158,11">
+                            <div class="node" aria-hidden="true">01</div>
+                            <a class="card glow" href="formations/pic-niv1.html">
+                                <div class="job"><span>stage: registers</span><i class="fa-solid fa-memory" aria-hidden="true"></i></div>
+                                <h4 class="g-amber">Niveau I</h4>
+                                <p>Le PIC16F84A en long et en large : interruptions, timer, EEPROM, watchdog… expliqués au niveau des registres.</p>
+                                <span class="run">./run module <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span>
+                            </a>
+                        </li>
+                        <li class="stage soon" style="--c: 100,116,139">
+                            <div class="node" aria-hidden="true">02</div>
+                            <div class="card">
+                                <div class="job"><span>stage: pending</span><i class="fa-regular fa-clock" aria-hidden="true"></i></div>
+                                <h4>Niveaux suivants</h4>
+                                <p>En préparation. Suis l'avancement sur Discord.</p>
+                                <span class="run">status: soon</span>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
                 <!--
-                    ▸ AJOUTER UNE NOUVELLE FORMATION : copier le bloc « Piste : Arduino » ci-dessus,
+                    ▸ AJOUTER UNE NOUVELLE FORMATION : copier un bloc « Piste » ci-dessus,
                       changer --c (couleur RGB), l'icône, le titre et les liens.
-                      Pour 2 ou 4 niveaux : ajouter style="grid-template-columns: repeat(4, 1fr)" sur le <ol class="pipeline">.
+                      Nombre de colonnes : style="--cols: 2" (ou 4…) sur le <ol class="pipeline"> (3 par défaut).
+                      Niveau pas encore disponible : <li class="stage soon"> avec un <div class="card"> au lieu d'un lien.
                     ▸ Penser aussi à l'ajouter dans assets/data.js (MH_FORMATIONS) pour le terminal et Ctrl+K.
                 -->
 

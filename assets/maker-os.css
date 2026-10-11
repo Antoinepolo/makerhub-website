@@ -383,6 +383,9 @@ a.resource:hover .arr { color: var(--accent); transform: translate(3px, -3px); }
 .parcours a[aria-current="page"] .n { color: #000; border-color: rgba(0,0,0,.3); }
 .parcours .sep { width: 22px; height: 2px; background: var(--line); }
 .parcours .sep.done { background: rgba(var(--accent-rgb), .45); }
+/* Niveau pas encore publié (pas un lien) */
+.parcours .soon { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; border: 1px dashed var(--line); border-radius: 999px; color: var(--dim); }
+.parcours .soon .n { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 11px; border: 1px dashed var(--line); }
 
 /* Listes à coches (informations, matériel) */
 .prose ul.checks li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 12px; top: 3px; }
@@ -393,6 +396,14 @@ a.resource:hover .arr { color: var(--accent); transform: translate(3px, -3px); }
 .prose ul.topics li { margin: 0; padding: 6px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); font-family: var(--mono); font-size: 13px; color: var(--text); line-height: 1.4; }
 .prose ul.topics li::before { content: none; }
 .prose ul.topics li small { color: var(--dim); font-size: 11.5px; }
+/* Programme numéroté (chapitres d'une formation) */
+.prose ol.syllabus { counter-reset: ch; display: grid; gap: 8px; padding: 0; }
+.prose ol.syllabus li { counter-increment: ch; display: flex; align-items: center; gap: 14px; padding: 11px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); font-family: var(--mono); font-size: 14px; color: #fff; }
+.prose ol.syllabus li::before { content: counter(ch, decimal-leading-zero); color: var(--accent); font-weight: 800; font-size: 12px; }
+.prose ol.syllabus li .st { margin-left: auto; font-size: 11px; color: var(--accent); }
+.prose ol.syllabus li.soon { border-style: dashed; background: transparent; color: var(--dim); }
+.prose ol.syllabus li.soon::before { color: var(--dim); }
+.prose ol.syllabus li.soon .st { color: var(--amber); }
 
 /* Précédent / suivant */
 .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 40px; }

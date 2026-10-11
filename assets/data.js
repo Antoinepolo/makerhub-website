@@ -59,7 +59,9 @@ window.MH_FORMATIONS = [
     { domain: "Arduino", level: 2, title: "Arduino — Niveau II",  href: "formations/arduino-niv2.html",
       desc: "Composants avancés, PlatformIO et systèmes plus autonomes.",  author: "antoine8205", duration: "10 h" },
     { domain: "Arduino", level: 3, title: "Arduino — Niveau III", href: "formations/arduino-niv3.html",
-      desc: "Puces ARM haute performance et fonctionnalités avancées.",    author: "antoine8205", duration: "en préparation" }
+      desc: "Puces ARM haute performance et fonctionnalités avancées.",    author: "antoine8205", duration: "en préparation" },
+    { domain: "PIC",     level: 1, title: "PIC — Niveau I",       href: "formations/pic-niv1.html",
+      desc: "Le PIC16F84A en long et en large, expliqué au niveau des registres.", author: "antoine8205", duration: "≈ 2 h par cours" }
 ];
 
 window.MH_LINKS = {

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr" data-accent="green">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIC — Niveau I | Maker Hub</title>
+    <meta name="description" content="Formation PIC niveau I : le microcontrôleur PIC16F84A en long et en large, expliqué au niveau des registres. Interruptions, Timer, EEPROM, WatchDog… Environ 2 h par cours.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0e17">
+    <meta name="color-scheme" content="dark">
+    <!-- TODO : remplacer https://VOTRE-DOMAINE/ -->
+    <link rel="canonical" href="https://VOTRE-DOMAINE/formations/pic-niv1.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Maker Hub">
+    <meta property="og:locale" content="fr_BE">
+    <meta property="og:title" content="PIC — Niveau I | Maker Hub">
+    <meta property="og:description" content="Formation PIC niveau I : le microcontrôleur PIC16F84A en long et en large, expliqué au niveau des registres. Interruptions, Timer, EEPROM, WatchDog… Environ 2 h par cours.">
+    <meta property="og:url" content="https://VOTRE-DOMAINE/formations/pic-niv1.html">
+    <meta property="og:image" content="https://VOTRE-DOMAINE/images/logo.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "PIC — Niveau I",
+    "description": "Formation PIC niveau I : le microcontrôleur PIC16F84A en long et en large, expliqué au niveau des registres. Interruptions, Timer, EEPROM, WatchDog… Environ 2 h par cours.",
+    "inLanguage": "fr",
+    "isAccessibleForFree": true,
+    "provider": {
+        "@type": "Organization",
+        "name": "Maker Hub",
+        "url": "https://VOTRE-DOMAINE/"
+    }
+}
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/maker-os.css">
+</head>
+<body data-page="doc" data-root="../" data-file="formations/pic-niv1.md">
+    <a href="#main" class="skip-link">Aller au contenu</a>
+
+    <header class="topbar">
+        <div class="wrap">
+            <a href="../index.html" class="brand" aria-label="Maker Hub — accueil">
+                <img src="../images/logo.png" alt="" width="30" height="30">
+                <span>MAKER HUB <span class="ver">v3.0</span></span>
+            </a>
+            <nav class="tabs" aria-label="Navigation principale">
+                <a href="../index.html"><span class="n">0:</span>accueil</a>
+                <a href="../index.html#projet"><span class="n">1:</span>projet</a>
+                <a href="../articles.html"><span class="n">2:</span>articles</a>
+                <a href="../index.html#formations" aria-current="page"><span class="n">3:</span>formations</a>
+                <a href="../index.html#equipe"><span class="n">4:</span>équipe</a>
+                <a href="../index.html#faq"><span class="n">5:</span>faq</a>
+                <a href="../index.html#contact"><span class="n">6:</span>contact</a>
+            </nav>
+            <div class="top-actions">
+                <span class="online"><span class="dot" aria-hidden="true"></span>status: online</span>
+                <button type="button" class="k-btn" data-open-palette aria-haspopup="dialog" aria-label="Ouvrir la navigation rapide (Ctrl+K)">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span class="hide-sm">Aller à…</span> <kbd>Ctrl K</kbd>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+        <span id="top"></span>
+        <div class="art">
+            <article>
+                <header class="art-head" data-section="formations/pic-niv1.md">
+                    <p class="crumbs"><a href="../index.html">~</a> / <a href="../index.html#formations">formations</a> / pic / niveau-1</p>
+                    <p class="cmd">$ <b>cat ./formations/pic_niveau_1.md</b></p>
+                    <h1>PIC — Niveau I</h1>
+                    <div class="art-meta">
+                        <span class="type info">FORMATION</span>
+                        <span><i class="fa-solid fa-memory" aria-hidden="true"></i>PIC · niveau 1</span>
+                        <span><i class="fa-regular fa-clock" aria-hidden="true"></i>≈ 2 h par cours</span>
+                        <span><i class="fa-solid fa-list-ol" aria-hidden="true"></i>5/8 cours disponibles</span>
+                        <span><i class="fa-regular fa-user" aria-hidden="true"></i>antoine8205</span>
+                    </div>
+                    <nav class="parcours" aria-label="Parcours PIC">
+                        <a href="pic-niv1.html" aria-current="page"><span class="n">01</span>Niveau I</a><span class="sep" aria-hidden="true"></span><span class="soon"><span class="n">02</span>à venir</span>
+                    </nav>
+                </header>
+
+                <div class="prose">
+<p>Cette formation présente le microcontrôleur <strong>PIC16F84A</strong> de Microchip en long et en large. Elle part vraiment des bases et explique tout au niveau des <strong>registres</strong>.</p>
+
+<div class="callout warn">
+    <p class="ct"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Prérequis</p>
+    <p>Il est nécessaire d'être à l'aise avec la programmation bas niveau. La formation demande aussi un temps beaucoup plus conséquent que l'Arduino : comptez environ <strong>2 h par cours</strong>.</p>
+</div>
+
+<h2>Informations</h2>
+<ul class="checks">
+    <li>Cours complet sur le microcontrôleur PIC16F84A</li>
+    <li>Support de cours disponible sur GitHub</li>
+    <li>Explications détaillées au niveau des registres</li>
+    <li>Nécessite d'être à l'aise avec la programmation bas niveau</li>
+    <li>Environ 2 h par cours</li>
+</ul>
+
+<h2>Programme</h2>
+<ol class="syllabus">
+    <li>Introduction<span class="st">disponible</span></li>
+    <li>Interruption<span class="st">disponible</span></li>
+    <li>Timer<span class="st">disponible</span></li>
+    <li>EEPROM<span class="st">disponible</span></li>
+    <li>WatchDog<span class="st">disponible</span></li>
+    <li class="soon">Mode de sommeil<span class="st">bientôt</span></li>
+    <li class="soon">Adresse Indirect<span class="st">bientôt</span></li>
+    <li class="soon">Projet Final<span class="st">bientôt</span></li>
+</ol>
+
+<h2>Lien du cours</h2>
+<a class="resource" href="https://github.com/Antoinepolo/makerhub-docs/tree/main/Maker%20Hub%20Lab/Programmation%20PIC" target="_blank" rel="noopener noreferrer">
+    <span class="ic" aria-hidden="true"><i class="fa-brands fa-github"></i></span>
+    <span><span class="rt">Voir le cours sur GitHub</span><span class="rs">makerhub-docs / Maker Hub Lab / Programmation PIC</span></span>
+    <i class="fa-solid fa-arrow-up-right-from-square arr" aria-hidden="true"></i>
+</a>
+
+<div class="callout">
+    <p class="ct"><i class="fa-solid fa-road" aria-hidden="true"></i> La suite</p>
+    <p>Les cours marqués « bientôt » et les niveaux suivants sont en préparation. Pour suivre leur sortie ou poser vos questions, rendez-vous sur le <a href="https://discord.gg/QNEzFvfCaS" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
+</div>
+                </div>
+
+                <div class="art-end">
+                    <a class="btn btn-ghost" href="../index.html#formations" data-back><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> cd ..</a>
+                    <span class="by">formation par <b>antoine8205</b> · une question ? <a href="https://discord.gg/QNEzFvfCaS" target="_blank" rel="noopener noreferrer" style="color:var(--cyan)">Discord</a></span>
+                </div>
+            </article>
+
+            <aside class="toc" aria-label="Sommaire">
+                <p>// sommaire</p>
+                <ol id="toc"></ol>
+                <div class="toc-actions">
+                    <button type="button" data-copy-link><i class="fa-solid fa-link" aria-hidden="true"></i> copier le lien</button>
+                    <a href="#top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i> haut de page</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer data-footer>
+        <!-- Contenu généré par assets/maker-os.js (une seule source pour tout le site). Liens de secours sans JavaScript : -->
+        <div class="wrap" style="text-align:center">
+            <a href="../mentions-legales.html">Mentions légales</a> · <a href="../confidentialite.html">Confidentialité</a> · <a href="../conditions.html">Conditions d'utilisation</a> · <a href="../accessibilite.html">Accessibilité</a>
+        </div>
+    </footer>
+
+    <script src="../assets/data.js"></script>
+    <script src="../assets/maker-os.js"></script>
+</body>
+</html>
